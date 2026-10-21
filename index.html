@@ -1,228 +1,1320 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ThinkWell Labs</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>ThinkWell Labs — Upstream Architectures</title>
+<meta name="description" content="ThinkWell Labs — independent research laboratory examining structural dynamics that shape perception, systems, and outcomes. Tools, research papers, and experimental systems.">
+<meta name="author" content="Briar M. Greenway">
+<meta name="theme-color" content="#060a0f">
+<link rel="canonical" href="https://twl.today/">
+<link rel="icon" href="twl-logo.jpeg" type="image/jpeg">
+<link rel="apple-touch-icon" href="twl-logo.jpeg">
+<meta property="og:title" content="ThinkWell Labs — Upstream Architectures">
+<meta property="og:description" content="A research program intervening upstream of perception — at the language, environment, and structure that shape decisions before anyone believes they are choosing.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://twl.today/">
+<meta property="og:image" content="https://twl.today/twllogo.jpeg">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-
-body{
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-    margin:0;
-    background:#0b0b0b;
-    color:#eaeaea;
-    line-height:1.6;
+/*
+  thinkwell labs · v2.1 · upstream architectures
+  ───────────────────────────────────────────────
+  landing page only — program.html carries the full statement.
+*/
+:root {
+  --bg:           #060a0f;
+  --bg-rise:      #0c1118;
+  --bg-card:      #0a1019;
+  --bg-deep:      #03060a;
+  --ink:          #e9ecef;
+  --ink-soft:     #a8b1bc;
+  --ink-faint:    #6a7280;
+  --ink-dim:      #404853;
+  --rule:         #18202c;
+  --rule-soft:    #0f151e;
+  --upstream:     #d6a45c;
+  --architecture: #6cd2ee;
+  --downstream:   #b3a1ec;
+  --defend:       #6cd2ee;
+  --construct:    #b3a1ec;
+  --core:         #d6a45c;
+  --ok:           #7fcf8a;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --serif: "Iowan Old Style", "Charter", "Source Serif 4", Georgia, "Times New Roman", serif;
+  --pad: clamp(20px, 4vw, 56px);
+  --measure: 64ch;
+  --radius: 6px;
 }
-
-header{
-    padding:60px 40px;
-    border-bottom:1px solid #333;
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
-
-h1{
-    font-size:40px;
-    margin:0;
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(900px 700px at 14% 6%,  rgba(214,164,92,0.07), transparent 60%),
+    radial-gradient(1100px 900px at 86% 20%, rgba(108,210,238,0.06), transparent 60%),
+    radial-gradient(1000px 1100px at 50% 100%, rgba(179,161,236,0.05), transparent 65%),
+    linear-gradient(180deg, #06090d 0%, #03060a 100%);
 }
-
-.tagline{
-    color:#aaa;
-    margin-top:10px;
+main, header, footer, section, nav { position: relative; z-index: 1; }
+a { color: var(--architecture); text-decoration: none; border-bottom: 1px solid color-mix(in oklab, var(--architecture) 30%, transparent); transition: border-color .15s, color .15s; }
+a:hover { color: #b6e9f7; border-bottom-color: var(--architecture); }
+a:focus-visible { outline: 2px solid var(--architecture); outline-offset: 3px; border-radius: 2px; }
+/* ─── fixed chrome (logo + toggle) ─── */
+.site-logo-link {
+  position: fixed; top: 16px; right: 24px; z-index: 200;
+  display: block; line-height: 0; border: none;
 }
-
-section{
-    padding:50px 40px;
-    border-bottom:1px solid #222;
+.site-logo {
+  width: 88px; height: auto; display: block;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0,0,0,.3);
+  transition: opacity .2s;
 }
-
-h2{
-    margin-top:0;
+.site-logo:hover { opacity: 0.82; }
+/* ─── shell ─── */
+.shell { max-width: 1240px; margin: 0 auto; padding: 0 var(--pad); }
+/* ─── section rhythm ─── */
+.section { padding: clamp(60px, 8vw, 100px) 0; border-top: 1px solid var(--rule-soft); }
+.section:first-of-type { border-top: none; }
+.section-head { margin-bottom: 36px; }
+.section-head .marker {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 14px;
 }
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
+.section-head .marker.--arch { color: var(--architecture); }
+.section-head .marker.--up   { color: var(--upstream); }
+.section-head h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(26px, 3.8vw, 40px); line-height: 1.1;
+  letter-spacing: -0.016em; margin: 0 0 14px; color: var(--ink); max-width: 32ch;
 }
-
-.card{
-    border:1px solid #333;
-    padding:25px;
-    border-radius:8px;
+.section-head h2 em { font-style: italic; }
+.section-head .lede { color: var(--ink-soft); font-size: 16px; line-height: 1.75; max-width: var(--measure); }
+/* ─── HERO ─── */
+header.hero {
+  padding: clamp(60px, 10vw, 130px) 0 clamp(40px, 6vw, 70px);
 }
-
-a{
-    color:#7fc8ff;
-    text-decoration:none;
+.hero-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  max-width: 1000px;
 }
-
-a:hover{
-    text-decoration:underline;
+@media (max-width: 700px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-logo { justify-self: start; }
 }
-
-footer{
-    padding:40px;
-    font-size:14px;
-    color:#777;
+.hero-logo {
+  width: clamp(100px, 14vw, 160px);
+  height: clamp(100px, 14vw, 160px);
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 0 60px color-mix(in oklab, var(--architecture) 20%, transparent), 0 0 120px color-mix(in oklab, var(--architecture) 08%, transparent);
 }
-
+.hero-logo img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.hero-logo-fallback {
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at 50% 40%, #0d2035 0%, #060a0f 100%);
+  border: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px; color: var(--architecture); letter-spacing: 0.12em;
+}
+.hero-text .eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--core); box-shadow: 0 0 10px color-mix(in oklab, var(--core) 60%, transparent);
+}
+.hero-text h1 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(38px, 6vw, 80px); line-height: 0.95;
+  letter-spacing: -0.024em; margin: 0 0 28px; color: var(--ink);
+}
+.hero-text h1 em { font-style: italic; }
+.hero-text h1 .labs {
+  display: inline-block; margin-left: 0.16em;
+  color: var(--ink-soft); font-size: 0.52em; font-style: normal;
+  letter-spacing: -0.01em; vertical-align: 0.22em;
+}
+.hero-thesis {
+  font-family: var(--serif); font-size: clamp(16px, 2vw, 21px);
+  line-height: 1.5; color: var(--ink-soft); max-width: 52ch;
+}
+.hero-thesis em { color: var(--ink); font-style: italic; }
+/* ─── TILE GRID ─── */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.tile-grid.--2 { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.tile-grid.--3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 760px) {
+  .tile-grid.--3 { grid-template-columns: 1fr; }
+  .tile-grid.--2 { grid-template-columns: 1fr; }
+}
+/* ─── PRODUCT TILE ─── */
+.product-tile {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--bg-card) 70%, transparent);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  text-decoration: none;
+}
+.product-tile:hover {
+  border-color: color-mix(in oklab, var(--architecture) 50%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px color-mix(in oklab, var(--architecture) 10%, transparent);
+}
+.product-tile .tile-img {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--bg-deep);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+.product-tile .tile-img img {
+  width: 100%; height: 100%;
+  object-fit: contain; padding: 20px;
+}
+.product-tile .tile-img .img-fallback {
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em;
+  color: var(--ink-faint); text-align: center;
+}
+.product-tile .tile-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.product-tile .tile-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ok); margin-bottom: 8px;
+}
+.product-tile .tile-tag.--dev { color: var(--upstream); }
+.product-tile .tile-name {
+  font-family: var(--serif); font-size: 22px; font-weight: 400;
+  line-height: 1.15; color: var(--ink); margin: 0 0 10px; border: none;
+}
+.product-tile .tile-desc {
+  color: var(--ink-soft); font-size: 14px; line-height: 1.65; flex: 1; margin: 0 0 16px;
+}
+.product-tile .tile-link {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  color: var(--architecture); border: none; display: flex; align-items: center; gap: 6px;
+}
+.product-tile .tile-link::after { content: "↗"; }
+/* ─── PAPER CARD ─── */
+.paper-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.paper-card {
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--architecture);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--bg-rise) 40%, transparent);
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: border-color .2s, background .2s;
+}
+.paper-card:hover {
+  border-color: var(--architecture);
+  background: color-mix(in oklab, var(--architecture) 5%, transparent);
+}
+.paper-card.--core { border-left-color: var(--core); }
+.paper-card.--construct { border-left-color: var(--construct); }
+.paper-card .paper-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.paper-card .paper-title {
+  font-family: var(--serif); font-size: 18px; font-weight: 400; line-height: 1.25;
+  color: var(--ink); margin: 0;
+}
+.paper-card .paper-title a { color: var(--ink); border-bottom: 1px solid color-mix(in oklab, var(--ink) 20%, transparent); }
+.paper-card .paper-title a:hover { color: var(--architecture); }
+.paper-card .paper-desc { color: var(--ink-soft); font-size: 13.5px; line-height: 1.6; margin: 0; }
+.paper-card .paper-meta {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em;
+  color: var(--ink-faint); display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto;
+}
+.paper-card .paper-meta .size { color: var(--ink-dim); }
+/* ─── PAPERS ALL LINK ─── */
+.papers-footer { margin-top: 22px; display: flex; align-items: center; justify-content: flex-end; }
+.papers-footer a {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+  color: var(--upstream); border-color: color-mix(in oklab, var(--upstream) 30%, transparent);
+}
+.papers-footer a:hover { color: #f0c07a; }
+/* ─── SYSTEM CARD ─── */
+.system-card {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--bg-card) 60%, transparent);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 12px;
+  position: relative; overflow: hidden;
+}
+.system-card::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--card-accent, var(--ink-dim));
+}
+.system-card[data-posture="defend"]    { --card-accent: var(--defend); }
+.system-card[data-posture="construct"] { --card-accent: var(--construct); }
+.system-card .sys-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.system-card .sys-name {
+  font-family: var(--serif); font-size: 24px; font-weight: 400;
+  line-height: 1.1; color: var(--ink); margin: 0;
+}
+.system-card .sys-desc {
+  color: var(--ink-soft); font-size: 14.5px; line-height: 1.65; margin: 0;
+}
+.system-card .sys-status {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em;
+  color: var(--upstream); margin-top: auto;
+}
+/* ─── INSTRUMENT (Polymorphic Matrix) ─── */
+.instrument-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+@media (max-width: 900px) { .instrument-wrap { grid-template-columns: 1fr; } }
+.instrument-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  margin: 20px 0; padding: 16px 0;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.instrument-stats > div { display: flex; flex-direction: column; }
+.instrument-stats .num { font-family: var(--serif); font-size: clamp(20px, 2.8vw, 30px); line-height: 1; color: var(--architecture); letter-spacing: -0.01em; }
+.instrument-stats .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-top: 6px; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
+  border-radius: 4px; cursor: pointer;
+  background: transparent; color: var(--ink); border: 1px solid var(--rule);
+  text-decoration: none; border-bottom: 1px solid var(--rule);
+  transition: border-color .15s, color .15s, background .15s;
+}
+.btn:hover { border-color: var(--architecture); color: var(--architecture); background: color-mix(in oklab, var(--architecture) 10%, transparent); }
+.btn-primary { border-color: var(--architecture); color: var(--architecture); }
+.btn-primary:hover { background: color-mix(in oklab, var(--architecture) 18%, transparent); }
+.instrument-frame {
+  position: relative; border: 1px solid var(--rule); border-radius: var(--radius);
+  background: color-mix(in oklab, var(--bg-rise) 60%, transparent);
+  overflow: hidden; aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+}
+.matrix-poster {
+  width: 100%; height: 100%; display: flex; flex-direction: column;
+  align-items: stretch; justify-content: center; cursor: pointer; transition: background .2s;
+}
+.matrix-poster:hover { background: color-mix(in oklab, var(--architecture) 6%, transparent); }
+.matrix-poster .poster-overlay {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 14px 18px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-faint);
+  background: linear-gradient(180deg, transparent 0%, color-mix(in oklab, var(--bg-deep) 90%, transparent) 100%);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.matrix-poster .play {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px; border: 1px solid var(--architecture); color: var(--architecture);
+  border-radius: 999px; transition: background .15s;
+}
+.matrix-poster:hover .play { background: color-mix(in oklab, var(--architecture) 18%, transparent); }
+.instrument-frame iframe { width: 100%; height: 100%; border: none; display: block; background: var(--bg-deep); }
+/* ─── PROGRAM TEASER ─── */
+.teaser-wrap {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+@media (max-width: 860px) { .teaser-wrap { grid-template-columns: 1fr; } }
+.teaser-body p {
+  color: var(--ink-soft); font-size: 16px; line-height: 1.75; margin: 0 0 16px; max-width: 56ch;
+}
+.teaser-body p:last-of-type { margin-bottom: 0; }
+.teaser-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 28px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase;
+  color: var(--architecture); border: 1px solid color-mix(in oklab, var(--architecture) 40%, transparent);
+  padding: 11px 18px; border-radius: 4px; border-bottom: 1px solid color-mix(in oklab, var(--architecture) 40%, transparent);
+  transition: border-color .15s, background .15s;
+}
+.teaser-cta::after { content: "→"; }
+.teaser-cta:hover { border-color: var(--architecture); background: color-mix(in oklab, var(--architecture) 10%, transparent); color: #b6e9f7; }
+.teaser-svg-wrap { display: flex; justify-content: center; align-items: center; }
+.teaser-svg-wrap svg { width: 100%; max-width: 300px; height: auto; opacity: 0.75; }
+/* shared node/edge statics for teaser SVG */
+.t-node-ring  { fill: none; stroke-width: 1.2; }
+.t-node-core  { }
+.t-edge       { fill: none; stroke-width: 1; opacity: 0.25; stroke-linecap: round; }
+.t-edge.spoke { opacity: 0.10; stroke-dasharray: 2 4; }
+.t-n-defend   .t-node-ring { stroke: var(--defend); }
+.t-n-defend   .t-node-core { fill: var(--defend); }
+.t-n-construct .t-node-ring { stroke: var(--construct); }
+.t-n-construct .t-node-core { fill: var(--construct); }
+.t-n-core     .t-node-ring { stroke: var(--core); }
+.t-n-core     .t-node-core { fill: var(--core); }
+/* ─── FOOTER ─── */
+footer {
+  margin-top: 30px; padding: 50px var(--pad) 60px;
+  border-top: 1px solid var(--rule); background: var(--bg-deep);
+}
+footer .foot-grid { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; }
+footer h5 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 14px; }
+footer ul { list-style: none; padding: 0; margin: 0; }
+footer li { margin-bottom: 8px; font-size: 14px; }
+footer .colophon { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); line-height: 1.7; }
+footer .colophon strong { color: var(--ink-soft); font-weight: 500; }
+footer .commitments { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--rule-soft); }
+footer .commitments b { color: var(--architecture); font-weight: 500; }
+@media (max-width: 760px) { footer .foot-grid { grid-template-columns: 1fr 1fr; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+::selection { background: color-mix(in oklab, var(--architecture) 35%, transparent); color: var(--ink); }
+/* ─── LIGHT MODE ─── */
+[data-theme="light"] {
+  --bg:           #f0f4f8;
+  --bg-rise:      #e4eaf2;
+  --bg-card:      #e8eef5;
+  --bg-deep:      #d8e0ec;
+  --ink:          #0d1117;
+  --ink-soft:     #2c3848;
+  --ink-faint:    #5a6578;
+  --ink-dim:      #8a96a8;
+  --rule:         #bcc8d8;
+  --rule-soft:    #ccd4e4;
+}
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(900px 700px at 14% 6%,  rgba(214,164,92,0.08), transparent 60%),
+    radial-gradient(1100px 900px at 86% 20%, rgba(108,210,238,0.07), transparent 60%),
+    radial-gradient(1000px 1100px at 50% 100%, rgba(179,161,236,0.06), transparent 65%),
+    linear-gradient(180deg, #e8eef5 0%, #dde4ef 100%);
+}
+/* ─── THEME TOGGLE ─── */
+.theme-toggle {
+  position: fixed; top: 22px; left: 24px; z-index: 200;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  background: color-mix(in oklab, var(--bg-deep) 88%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--rule); border-radius: 20px;
+  padding: 5px 13px; cursor: pointer;
+  color: var(--ink-faint); transition: border-color .15s, color .15s;
+  white-space: nowrap;
+}
+.theme-toggle:hover { border-color: var(--architecture); color: var(--architecture); }
+@media (max-width: 600px) { .site-logo { width: 40px; height: 40px; top: 14px; right: 14px; } .theme-toggle { top: 16px; left: 14px; padding: 4px 10px; font-size: 10px; } }
+/* ─── PRODUCT DETAIL ─── */
+.pd-tabs {
+  display: flex; gap: 0; margin-bottom: 0; flex-wrap: wrap;
+}
+.pd-tab {
+  flex: 1; min-width: 120px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 16px 12px;
+  background: color-mix(in oklab, var(--bg-card) 60%, transparent);
+  border: 1px solid var(--rule); border-bottom: 2px solid transparent;
+  color: var(--ink-faint); font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.pd-tab:first-child { border-radius: var(--radius) 0 0 0; }
+.pd-tab:last-child  { border-radius: 0 var(--radius) 0 0; }
+.pd-tab img { width: 60px; height: 60px; object-fit: contain; border-radius: 8px; opacity: 0.5; transition: opacity .2s; }
+.pd-tab:hover { background: color-mix(in oklab, var(--bg-rise) 80%, transparent); color: var(--ink-soft); }
+.pd-tab:hover img { opacity: 0.75; }
+.pd-tab.active {
+  background: color-mix(in oklab, var(--bg-rise) 90%, transparent);
+  border-bottom-color: var(--upstream); color: var(--ink);
+}
+.pd-tab.active img { opacity: 1; }
+.pd-panel {
+  display: none;
+  background: color-mix(in oklab, var(--bg-rise) 60%, transparent);
+  border: 1px solid var(--rule); border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 32px;
+  animation: pdFadeIn .25s ease;
+}
+.pd-panel.active { display: block; }
+@keyframes pdFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+.pd-header { display: flex; align-items: center; gap: 20px; margin-bottom: 16px; }
+.pd-header img { width: 80px; height: 80px; object-fit: contain; border-radius: 10px; flex-shrink: 0; border: 1px solid var(--rule); background: var(--bg-deep); padding: 8px; }
+.pd-header-text h3 { font-family: var(--serif); font-size: 26px; font-weight: 400; color: var(--ink); margin: 0 0 4px; }
+.pd-header-text .pd-status { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ok); }
+.pd-desc { color: var(--ink-soft); font-size: 15px; line-height: 1.7; margin-bottom: 24px; max-width: 64ch; }
+.pd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.pd-item {
+  background: color-mix(in oklab, var(--bg-card) 80%, transparent);
+  border: 1px solid var(--rule); border-radius: var(--radius); padding: 16px;
+}
+.pd-item h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 8px; }
+.pd-item p { font-size: 13px; color: var(--ink-faint); line-height: 1.6; margin: 0 0 10px; }
+.pd-item a { font-family: var(--mono); font-size: 11px; color: var(--upstream); border-bottom: 1px solid color-mix(in oklab, var(--upstream) 30%, transparent); }
+.pd-item a:hover { color: #f0c07a; }
+.pd-item.--access {
+  background: color-mix(in oklab, var(--ok) 6%, transparent);
+  border-color: color-mix(in oklab, var(--ok) 30%, transparent);
+  border-style: dashed;
+}
+.pd-item.--access h4 { color: var(--ok); }
+/* ─── VIDEO OPT-IN ─── */
+.yt-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; margin-top: 10px; background: var(--bg-deep); border: 1px solid var(--rule); }
+.yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 6px; }
+.yt-poster {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; cursor: pointer;
+  background: var(--bg-deep); transition: background .2s;
+}
+.yt-poster:hover { background: color-mix(in oklab, var(--bg-rise) 80%, transparent); }
+.yt-play { font-family: var(--mono); font-size: 11px; color: var(--architecture); padding: 8px 16px; border: 1px solid color-mix(in oklab, var(--architecture) 40%, transparent); border-radius: 20px; margin-bottom: 8px; }
+.yt-note { font-family: var(--mono); font-size: 10px; color: var(--ink-dim); letter-spacing: 0.08em; }
+/* ─── LOGO GALLERY ─── */
+.logo-gallery { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 8px; }
+.logo-gallery img { height: 90px; width: auto; object-fit: contain; border-radius: 8px; background: var(--bg-deep); padding: 8px; border: 1px solid var(--rule); transition: transform .2s, box-shadow .2s; }
+.logo-gallery img:hover { transform: scale(1.05); box-shadow: 0 4px 16px color-mix(in oklab, var(--upstream) 20%, transparent); }
+.pd-gallery-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin: 20px 0 6px; }
+.pd-gallery-sub { font-size: 13px; color: var(--ink-faint); margin-bottom: 12px; }
+/* ─── PRODUCT ACCORDION ─── */
+.prod-list { display: flex; flex-direction: column; }
+.prod-row { border-bottom: 1px solid var(--rule); }
+.prod-row:first-child { border-top: 1px solid var(--rule); }
+.prod-row-header {
+  display: flex; align-items: center; gap: 24px;
+  width: 100%; padding: 22px 0;
+  background: transparent; border: none; cursor: pointer; text-align: left;
+  transition: opacity .15s;
+}
+.prod-row-header:hover .prod-row-name { color: var(--architecture); }
+.prod-row-left { flex: 1; display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+.prod-row-name {
+  font-family: var(--serif); font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 400; color: var(--ink); line-height: 1; transition: color .15s;
+  letter-spacing: -0.01em;
+}
+.prod-row-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ok); flex-shrink: 0;
+}
+.prod-row-snippet {
+  width: 100%; font-size: 13.5px; color: var(--ink-faint); line-height: 1.5;
+  margin-top: 4px; max-width: 72ch;
+}
+.prod-row-right { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+.prod-row-url { font-family: var(--mono); font-size: 11px; color: var(--ink-dim); }
+@media (max-width: 600px) { .prod-row-url { display: none; } }
+.prod-row-arrow {
+  font-size: 13px; color: var(--ink-faint); transition: transform .25s ease;
+  font-family: var(--mono); user-select: none;
+}
+.prod-row.open .prod-row-arrow { transform: rotate(180deg); }
+.prod-row-body { display: none; padding: 0 0 36px; }
+.prod-row.open .prod-row-body { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: start; }
+@media (max-width: 760px) { .prod-row.open .prod-row-body { grid-template-columns: 1fr; gap: 24px; } }
+.prod-body-desc { font-size: 16px; line-height: 1.8; color: var(--ink-soft); margin: 0 0 24px; max-width: 56ch; }
+.prod-body-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.prod-body-cta {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+  color: var(--architecture);
+  border: 1px solid color-mix(in oklab, var(--architecture) 40%, transparent);
+  padding: 9px 16px; border-radius: 4px; display: inline-flex; align-items: center; gap: 6px;
+  transition: border-color .15s, background .15s; text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklab, var(--architecture) 40%, transparent);
+}
+.prod-body-cta:hover { border-color: var(--architecture); background: color-mix(in oklab, var(--architecture) 10%, transparent); }
+.prod-body-cta::after { content: "↗"; }
+.prod-body-cta.--secondary { color: var(--upstream); border-color: color-mix(in oklab, var(--upstream) 35%, transparent); border-bottom: 1px solid color-mix(in oklab, var(--upstream) 35%, transparent); }
+.prod-body-cta.--secondary:hover { border-color: var(--upstream); background: color-mix(in oklab, var(--upstream) 8%, transparent); }
+.prod-body-cta.--secondary::after { content: "→"; }
+.prod-resources { display: flex; flex-direction: column; gap: 10px; }
+.prod-res-item {
+  background: color-mix(in oklab, var(--bg-card) 70%, transparent);
+  border: 1px solid var(--rule); border-radius: var(--radius); padding: 14px 16px;
+}
+.prod-res-item h4 {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 6px;
+}
+.prod-res-item p { font-size: 13px; color: var(--ink-faint); margin: 0 0 8px; line-height: 1.5; }
+.prod-res-item a { font-family: var(--mono); font-size: 11px; color: var(--upstream); border-bottom: 1px solid color-mix(in oklab, var(--upstream) 30%, transparent); }
+.prod-res-item a:hover { color: #f0c07a; }
+/* ─── ABOUT ─── */
+.about-body { max-width: 60ch; }
+.about-body p { font-size: 17px; line-height: 1.8; color: var(--ink-soft); margin: 0; }
+/* ─── SUBSCRIBE ─── */
+.subscribe-wrap { display: flex; flex-direction: column; gap: 16px; max-width: 500px; }
+.subscribe-wrap p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+.subscribe-form { display: flex; gap: 8px; }
+.subscribe-form input[type="email"] {
+  flex: 1; padding: 10px 14px; font-family: var(--mono); font-size: 13px;
+  background: color-mix(in oklab, var(--bg-card) 80%, transparent);
+  border: 1px solid var(--rule); border-radius: 4px;
+  color: var(--ink); outline: none; transition: border-color .15s;
+}
+.subscribe-form input:focus { border-color: var(--architecture); }
+.subscribe-form button {
+  padding: 10px 20px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
+  background: var(--upstream); color: var(--bg-deep); border: none; border-radius: 4px;
+  cursor: pointer; font-weight: 600; transition: opacity .15s;
+}
+.subscribe-form button:hover { opacity: 0.85; }
+/* ─── NETWORK FOOTER ─── */
+.network-footer {
+  margin-top: 0; padding: 16px var(--pad);
+  border-top: 1px solid var(--rule-soft);
+  background: var(--bg-deep);
+  font-family: var(--mono); font-size: 11px; color: var(--ink-dim);
+  text-align: center; letter-spacing: 0.06em; line-height: 2;
+}
+.network-footer strong { color: var(--ink-faint); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; font-size: 10px; display: block; margin-bottom: 4px; }
+.network-footer a { color: var(--ink-faint); border: none; margin: 0 8px; }
+.network-footer a:hover { color: var(--ink); }
+.network-footer .sep { opacity: 0.3; }
 </style>
 </head>
-
-
 <body>
-
-
-<header>
-
-<h1>ThinkWell Labs</h1>
-
-<div class="tagline">
-Independent research studio developing cognitive systems, language frameworks, and applied analytical tools.
-</div>
-
+<a href="index.html" class="site-logo-link"><img src="twl-logo.jpeg" alt="ThinkWell Labs" class="site-logo"></a>
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">☀ light</button>
+<main>
+<div class="shell">
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> thinkwell labs · upstream architectures</div>
+      <h1><em>think</em>well<span class="labs">/labs</span></h1>
+      <p class="hero-thesis">
+        Structural research laboratory examining <em>perception mechanics</em>, system cognition, cybersecurity, and engineered environments — intervening upstream of the structures that shape decisions before anyone believes they are choosing.
+      </p>
+    </div>
+  </div>
 </header>
-
-
-
-<section>
-
-<h2>Functional Tools</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>AcePaste</h3>
-<p>Clipboard acceleration tool for structured text workflows.</p>
-<a href="https://acepaste.xyz">acepaste.xyz</a>
-</div>
-
-<div class="card">
-<h3>Errorfect</h3>
-<p>Linguistic inversion engine revealing structural distortions hidden in language.</p>
-<a href="https://errorfect.com">errorfect.com</a>
-</div>
-
-</div>
-
+<!-- ── LIVE PRODUCTS ── -->
+<section class="section" id="products" aria-label="Live products">
+  <div class="section-head">
+    <div class="marker --arch">live products</div>
+    <h2>Deployed tools — each a <em>structural intervention</em>.</h2>
+    <p class="lede">Select any product to expand.</p>
+  </div>
+  <div class="prod-list">
+    <!-- TOROID -->
+    <div class="prod-row open" id="pr-toroid">
+      <button class="prod-row-header" onclick="toggleProd('toroid')" aria-expanded="true">
+        <div class="prod-row-left">
+          <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;">
+            <span class="prod-row-name">Toroid</span>
+            <span class="prod-row-tag" style="color:var(--downstream)">live · research instrument environment</span>
+          </div>
+          <span class="prod-row-snippet">The torus as primary research substrate — the most architecturally complete work in the program.</span>
+        </div>
+        <div class="prod-row-right">
+          <span class="prod-row-url">toroid.fyi</span>
+          <span class="prod-row-arrow">▾</span>
+        </div>
+      </button>
+      <div class="prod-row-body">
+        <div>
+          <p class="prod-body-desc">The torus as primary research substrate — bounded, edgeless, doubly periodic. Not a visualization tool but an operational mathematical environment: multiple instruments built on this geometry treat topology as the research medium itself. The Polymorphic Matrix, analytical systems, and structural instruments all operate here. The most architecturally complete work in the program.</p>
+          <div class="prod-body-actions">
+            <a class="prod-body-cta" href="https://toroid.fyi" rel="noopener">toroid.fyi</a>
+          </div>
+        </div>
+        <div class="prod-resources">
+          <div class="prod-res-item">
+            <h4>Research Instruments</h4>
+            <p>Multiple instruments operating on the toroidal substrate — the full environment is live.</p>
+            <a href="https://toroid.fyi" rel="noopener">Open Toroid →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ERRORFECT -->
+    <div class="prod-row" id="pr-errorfect">
+      <button class="prod-row-header" onclick="toggleProd('errorfect')" aria-expanded="false">
+        <div class="prod-row-left">
+          <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;">
+            <span class="prod-row-name">Errorfect</span>
+            <span class="prod-row-tag">live · cognitive tool</span>
+          </div>
+          <span class="prod-row-snippet">Sequential disruption protocol for exposing cognitive operators hidden in everyday vocabulary.</span>
+        </div>
+        <div class="prod-row-right">
+          <span class="prod-row-url">errorfect.com</span>
+          <span class="prod-row-arrow">▾</span>
+        </div>
+      </button>
+      <div class="prod-row-body">
+        <div>
+          <p class="prod-body-desc">Semantic inversion engine — every word carries an unspoken standard. <em>Perfect</em> → Errorfect surfaces what that standard is, who installed it, and whether you agreed to it. A sequential disruption protocol for exposing cognitive operators hidden in everyday vocabulary.</p>
+          <div class="prod-body-actions">
+            <a class="prod-body-cta" href="https://errorfect.com" rel="noopener">Launch Errorfect</a>
+            <a class="prod-body-cta --secondary" href="papers/Errorfect_White_Paper.pdf">White Paper (570 KB)</a>
+          </div>
+        </div>
+        <div class="prod-resources">
+          <div class="prod-res-item">
+            <h4>Explainer Video</h4>
+            <p>Level 1 — the first protocol of DACRI.</p>
+            <div class="yt-wrap">
+              <div class="yt-poster" data-src="https://www.youtube.com/embed/spX_7emYUuo" onclick="loadYT(this)">
+                <span class="yt-play">▶ load video</span>
+                <span class="yt-note">external request on click only</span>
+              </div>
+            </div>
+          </div>
+          <div class="prod-res-item">
+            <h4>Logo Gallery</h4>
+            <p>Each version reflects a different perceptual frame. The logo changes because meaning does.</p>
+            <div class="logo-gallery" style="margin-top:10px;">
+              <img src="https://twl.today/errorfect.png" alt="Errorfect">
+              <img src="https://twl.today/EC904BAA-F5E0-4228-86CB-4191FD0A4EDB.png" alt="">
+              <img src="https://twl.today/32047B83-6519-4003-910C-7A152D124C82.png" alt="">
+              <img src="https://twl.today/FAFDF64A-78C7-43CF-9C14-6D71D5466B60.png" alt="">
+              <img src="https://twl.today/657AF014-74E0-491A-9E68-36A7601AF066.png" alt="">
+              <img src="https://twl.today/820F6A31-9A5C-4710-A6BD-1FDF95DCF802.png" alt="">
+              <img src="https://twl.today/4BBC46C5-FFD6-4E6C-B16E-789F6FF285EF.png" alt="">
+              <img src="https://twl.today/2C085A63-6E1D-4681-8980-BE6E655BCA72.png" alt="">
+              <img src="https://twl.today/12E9D59D-4ECC-4634-9538-5DEDBB231E70.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ACEPASTE -->
+    <div class="prod-row" id="pr-acepaste">
+      <button class="prod-row-header" onclick="toggleProd('acepaste')" aria-expanded="false">
+        <div class="prod-row-left">
+          <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;">
+            <span class="prod-row-name">AcePaste</span>
+            <span class="prod-row-tag">live · utility · browser extension</span>
+          </div>
+          <span class="prod-row-snippet">Strips invisible Unicode, zero-width characters, and AI markup debris before paste.</span>
+        </div>
+        <div class="prod-row-right">
+          <span class="prod-row-url">acepaste.xyz</span>
+          <span class="prod-row-arrow">▾</span>
+        </div>
+      </button>
+      <div class="prod-row-body">
+        <div>
+          <p class="prod-body-desc">Clean transfer paste — strips zero-width spaces, bidi overrides, variation selectors, and AI-generated markup debris. 100% client-side. No servers, no transit, no friction. Also available as a browser extension from acepaste.xyz.</p>
+          <div class="prod-body-actions">
+            <a class="prod-body-cta" href="https://acepaste.xyz" rel="noopener">Get the extension</a>
+            <a class="prod-body-cta --secondary" href="invisible-text.html">Invisible Text Attack</a>
+          </div>
+        </div>
+        <div class="prod-resources">
+          <div class="prod-res-item">
+            <h4>Explainer Video</h4>
+            <p>How AcePaste works and why the paste boundary matters.</p>
+            <div class="yt-wrap">
+              <div class="yt-poster" data-src="https://www.youtube.com/embed/whugBAOLq1M" onclick="loadYT(this)">
+                <span class="yt-play">▶ load video</span>
+                <span class="yt-note">external request on click only</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TRACKRSMACKR -->
+    <div class="prod-row" id="pr-trackrsmackr">
+      <button class="prod-row-header" onclick="toggleProd('trackrsmackr')" aria-expanded="false">
+        <div class="prod-row-left">
+          <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;">
+            <span class="prod-row-name">TrackRSmackR</span>
+            <span class="prod-row-tag">live · chrome store · fingerprinting disruptor</span>
+          </div>
+          <span class="prod-row-snippet">Browser extension restoring user control over passive tracking, cookie surveillance, and fingerprinting.</span>
+        </div>
+        <div class="prod-row-right">
+          <span class="prod-row-url">cookiebouncer.app</span>
+          <span class="prod-row-arrow">▾</span>
+        </div>
+      </button>
+      <div class="prod-row-body">
+        <div>
+          <p class="prod-body-desc">Finished browser extension restoring user control over passive tracking, cookie surveillance, and fingerprinting. Intercepts cookies before storage, classifies via local policy engine, encrypts non-essential cookies in AES-GCM vault. No telemetry, no account. Live in the Chrome Web Store.</p>
+          <div class="prod-body-actions">
+            <a class="prod-body-cta" href="https://cookiebouncer.app" rel="noopener">Get the extension</a>
+          </div>
+        </div>
+        <div class="prod-resources">
+          <div class="prod-res-item">
+            <h4>Promo Video</h4>
+            <div class="yt-wrap">
+              <div class="yt-poster" data-src="https://www.youtube.com/embed/fCPkwvEPhYk" onclick="loadYT(this)">
+                <span class="yt-play">▶ load video</span>
+                <span class="yt-note">external request on click only</span>
+              </div>
+            </div>
+          </div>
+          <div class="prod-res-item">
+            <h4>Theme Song</h4>
+            <p>Full TrackRSmackR theme from the promo.</p>
+            <a href="#">Listen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- VOLAVUE -->
+    <div class="prod-row" id="pr-volavue">
+      <button class="prod-row-header" onclick="toggleProd('volavue')" aria-expanded="false">
+        <div class="prod-row-left">
+          <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;">
+            <span class="prod-row-name">VolaVue</span>
+            <span class="prod-row-tag">live · clarity advisory</span>
+          </div>
+          <span class="prod-row-snippet">Structured decision review using the Personal Decision Topology framework.</span>
+        </div>
+        <div class="prod-row-right">
+          <span class="prod-row-url">volavue.fyi</span>
+          <span class="prod-row-arrow">▾</span>
+        </div>
+      </button>
+      <div class="prod-row-body">
+        <div>
+          <p class="prod-body-desc">Structured decision review using the Personal Decision Topology framework — mapping forces, pressures, relationships, and consequence paths before you act. A private 60–90 minute session. Confidential, single-scope, no ongoing commitment.</p>
+          <div class="prod-body-actions">
+            <a class="prod-body-cta" href="https://volavue.fyi" rel="noopener">volavue.fyi</a>
+          </div>
+        </div>
+        <div class="prod-resources">
+          <div class="prod-res-item">
+            <h4>Format</h4>
+            <p>Private 60–90 minute session. Confidential. Single-scope. No ongoing commitment required.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- POLYGONAL MINDS · sorted.quest -->
+    <div class="prod-row" id="pr-polygonalminds">
+      <button class="prod-row-header" onclick="toggleProd('polygonalminds')" aria-expanded="false">
+        <div class="prod-row-left">
+          <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;">
+            <span class="prod-row-name">Polygonal Minds</span>
+            <span class="prod-row-tag">live · cognitive instrument</span>
+          </div>
+          <span class="prod-row-snippet">A cognitive assessment that renders how you think as a polyhedron — how you think has a shape, and the shape can be measured.</span>
+        </div>
+        <div class="prod-row-right">
+          <span class="prod-row-url">sorted.quest</span>
+          <span class="prod-row-arrow">▾</span>
+        </div>
+      </button>
+      <div class="prod-row-body">
+        <div>
+          <p class="prod-body-desc">Answer the sequence and your cognition resolves into a personal polyhedron — a measurement, not a personality quiz. Built on the premise that how you think has a shape, and the shape can be rendered and turned in your hand.</p>
+          <div class="prod-body-actions">
+            <a class="prod-body-cta" href="https://sorted.quest" rel="noopener">Take the assessment</a>
+          </div>
+        </div>
+        <div class="prod-resources">
+          <div class="prod-res-item">
+            <h4>Format</h4>
+            <p>Live and in use. Take the assessment; your result renders as a polyhedron.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SCHES · axisoffun.itch.io/sches -->
+    <div class="prod-row" id="pr-sches">
+      <button class="prod-row-header" onclick="toggleProd('sches')" aria-expanded="false">
+        <div class="prod-row-left">
+          <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;">
+            <span class="prod-row-name">Sches</span>
+            <span class="prod-row-tag" style="color:var(--downstream)">live · game</span>
+          </div>
+          <span class="prod-row-snippet">Abstract strategy on a torus — a board with no edges, a hidden second plane, and clashes that fall into nested minigames.</span>
+        </div>
+        <div class="prod-row-right">
+          <span class="prod-row-url">axisoffun.itch.io/sches</span>
+          <span class="prod-row-arrow">▾</span>
+        </div>
+      </button>
+      <div class="prod-row-body">
+        <div>
+          <p class="prod-body-desc">A chess-adjacent game whose board has no edges. A 32×12 grid wraps in three dimensions over a hidden second plane, the Veil; both players plot moves in secret and reveal at once, and same-type clashes drop into nested minigames. Built in WebGL, playable in the browser.</p>
+          <div class="prod-body-actions">
+            <a class="prod-body-cta" href="https://axisoffun.itch.io/sches" rel="noopener">Play on itch.io</a>
+          </div>
+        </div>
+        <div class="prod-resources">
+          <div class="prod-res-item">
+            <h4>Studio</h4>
+            <p>Published under Axis of Fun. Live and playable now.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- PSIFILES -->
+    <div class="prod-row" id="pr-psifiles">
+      <button class="prod-row-header" onclick="toggleProd('psifiles')" aria-expanded="false">
+        <div class="prod-row-left">
+          <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;">
+            <span class="prod-row-name">PsiFiles</span>
+            <span class="prod-row-tag" style="color:var(--upstream)">dev · research archive</span>
+          </div>
+          <span class="prod-row-snippet">Research archive and instrument set for psi phenomena and anomalous cognition.</span>
+        </div>
+        <div class="prod-row-right">
+          <span class="prod-row-url">psifiles.fyi</span>
+          <span class="prod-row-arrow">▾</span>
+        </div>
+      </button>
+      <div class="prod-row-body">
+        <div>
+          <p class="prod-body-desc">Research archive and instrument set for psi phenomena — structured data, experimental protocols, and upstream structural analysis of the mechanisms by which anomalous cognition research gets dismissed before it reaches the evidence layer.</p>
+          <div class="prod-body-actions">
+            <a class="prod-body-cta" href="https://psifiles.fyi" rel="noopener">psifiles.fyi</a>
+          </div>
+        </div>
+        <div class="prod-resources">
+          <div class="prod-res-item">
+            <h4>Status</h4>
+            <p>In development. Archive structure and initial instruments being assembled.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-
-
-
-<section>
-
-<h2>Research & White Papers</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Ψ Influence Mapping Framework</h3>
-<p>Systematic model for detecting cognitive influence architectures.</p>
-</div>
-
-<div class="card">
-<h3>Cy-Psy-Coup</h3>
-<p>Analysis of cyber-psychological influence structures used to distort governance.</p>
-</div>
-
-<div class="card">
-<h3>Caecusoscopy</h3>
-<p>Analytical method for observing catalytic systems that cannot be directly perceived.</p>
-</div>
-
-<div class="card">
-<h3>Greed Systems Research</h3>
-<p>Large-scale examination of greed as a destabilizing force in social and ecological systems.</p>
-</div>
-
-<div class="card">
-<h3>Polytraxylon System</h3>
-<p>Integrated infrastructure platform combining energy generation, desalination, and data systems.</p>
-</div>
-
-</div>
-
+<!-- ── RESEARCH PAPERS ── -->
+<section class="section" id="papers" aria-label="Research papers">
+  <div class="section-head">
+    <div class="marker --up">research papers</div>
+    <h2>Published analytical work. <em>Open access.</em></h2>
+    <p class="lede">All papers publish under CC BY 4.0. Adaptations of the methodology to new domains are the program's preferred mode of growth.</p>
+  </div>
+  <div class="paper-grid">
+    <div class="paper-card --core">
+      <div class="paper-tag">metrology · measurement instrument</div>
+      <h3 class="paper-title"><a href="papers/named-and-counted.pdf">Named and Counted, Not Blamed nor Accounted</a></h3>
+      <p class="paper-desc">A metrological instrument for measuring directional dysfunction in governing structures: five signatures fold into one Obfuscratic Asymmetry index, built to be capable of losing and validated against past reforms it scores low. It opens with the case against itself and closes on the conditions that would falsify it; companion to the live instrument at toroid.fyi/sabbot.</p>
+      <div class="paper-meta"><span>ThinkWell Labs Metrology · v7 · 2026</span><span class="size">PDF</span></div>
+    </div>
+      <div class="paper-card --construct">
+      <div class="paper-tag">ai systems · white paper</div>
+      <h3 class="paper-title">
+        <a href="papers/ANP-whitepaper-v8.1.pdf">Autonomous Network Propagation (ANP) — v8.1</a>
+      </h3>
+      <p class="paper-desc">
+        ANP v8.1 defines autonomous AI-driven network propagation as a formal threat class and shows — via an information-theoretic lower bound and preliminary simulation — that such systems must observably explore before they strike, enabling early-warning detection with measurable lead time.
+      </p>
+      <div class="paper-meta">
+        <span>ThinkWell White Paper · 2026</span>
+        <span class="size">PDF</span>
+      </div>
+    </div>
+    <div class="paper-card">
+      <div class="paper-tag">linguistic-cognitive · white paper</div>
+      <h3 class="paper-title"><a href="papers/Errorfect_White_Paper.pdf">Errorfect: The Linguistic Autopsy</a></h3>
+      <p class="paper-desc">Sequential disruption protocol for exposing hidden cognitive operators in natural language. Formalizes the mask-mechanism distinction; situates within ACT, CBT, and narrative therapy. Applications from personal metacognitive hygiene to institutional language audit.</p>
+      <div class="paper-meta"><span>ThinkWell White Paper · 2026</span><span class="size">570 KB</span></div>
+    </div>
+    <div class="paper-card --construct">
+      <div class="paper-tag">political systems · instrument paper</div>
+      <h3 class="paper-title"><a href="papers/circulatory_pressure_architectures.pdf">Circulatory Pressure Architectures</a></h3>
+      <p class="paper-desc">Full analytical mapping of the pressure topology underlying the Polymorphic Matrix — from apparatus mechanisms through convergence to erosion outputs and feedback loops.</p>
+      <div class="paper-meta"><span>ThinkWell Research Paper · 2026</span><span class="size">1.1 MB</span></div>
+    </div>
+    <div class="paper-card --construct">
+      <div class="paper-tag">political systems · summary</div>
+      <h3 class="paper-title"><a href="papers/circulatory_pressure_architectures_summary.pdf">Circulatory Pressure Architectures — Summary</a></h3>
+      <p class="paper-desc">Compressed overview of the circulatory pressure framework for rapid orientation.</p>
+      <div class="paper-meta"><span>ThinkWell Summary · 2026</span><span class="size">678 KB</span></div>
+    </div>
+    <div class="paper-card">
+      <div class="paper-tag">methodology · specification</div>
+      <h3 class="paper-title"><a href="papers/Caecusoscopy-white-paper.pdf">Caecusoscopy</a></h3>
+      <p class="paper-desc">Methodological specification for identifying structural influences that shape perception and institutional outcomes while operating beneath conscious awareness — through systematic examination of downstream trace evidence rather than direct observation.</p>
+      <div class="paper-meta"><span>ThinkWell Research Paper · 2026</span></div>
+    </div>
+    <div class="paper-card --core">
+      <div class="paper-tag">nutrition · systems analysis</div>
+      <h3 class="paper-title"><a href="#" aria-disabled="true">Food-op: emergence turned psy-op</a></h3>
+      <p class="paper-desc">Two-phase structural analysis tracing how the edible/non-edible partition arose through path-dependent evolutionary heuristics, then became a capturable asset once industry actors chose suppression over disclosure.</p>
+      <div class="paper-meta"><span>ThinkWell Research Paper · 2026</span></div>
+    </div>
+    <div class="paper-card --construct">
+      <div class="paper-tag">consciousness · theoretical framework</div>
+      <h3 class="paper-title"><a href="#" aria-disabled="true">The Electrodynamic Coherence Framework</a></h3>
+      <p class="paper-desc">Theoretical framework proposing that consciousness arises through electrodynamic coherence — coupling plasma dynamics, muon transduction, and charge transfer in biological systems to a measurable field structure.</p>
+      <div class="paper-meta"><span>ThinkWell Research Paper VI v1 · 2026</span></div>
+    </div>
+  </div>
+  <div class="papers-footer">
+    <a href="papers.html">all papers &amp; research →</a>
+  </div>
 </section>
-
-
-
-<section>
-
-<h2>Active Projects</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Arttra</h3>
-<p>Living gallery concept integrating physical murals with digital interpretation layers.</p>
-<p>Status: In Development</p>
-</div>
-
-<div class="card">
-<h3>Psi Project</h3>
-<p>Visualization engine for mapping influence architectures across media and institutions.</p>
-<p>Status: In Development</p>
-</div>
-
-<div class="card">
-<h3>TrackrSmackr</h3>
-<p>Privacy tool designed to expose and neutralize web tracking systems.</p>
-<p>Status: Prototype Stage</p>
-</div>
-
-<div class="card">
-<h3>SugarCypher</h3>
-<p>Receipt-based nutritional analysis system revealing hidden sugar exposure.</p>
-<p>Status: Prototype Stage</p>
-</div>
-
-</div>
-
+<!-- ── POLYMORPHIC MATRIX (moved to toroid.fyi) ── -->
+<!-- removed: matrix now lives at toroid.fyi -->
+<section class="section" id="instrument" aria-label="Polymorphic Matrix instrument" style="display:none;">
+  <div class="instrument-wrap">
+    <div>
+      <div class="section-head" style="margin-bottom: 0;">
+        <div class="marker --up">instrument · interactive systems topology</div>
+        <h2>The <em>Polymorphic Matrix</em>.</h2>
+        <p class="lede">62 nodes, 200 edges, 7 connection types — mapping systemic pressure, convergence, erosion, capture, and feedback. The same node-and-edge grammar applied to the upstream causal networks the lab's program responds to.</p>
+      </div>
+      <div class="instrument-stats" aria-hidden="true">
+        <div><span class="num">62</span><span class="lbl">nodes</span></div>
+        <div><span class="num">200</span><span class="lbl">edges</span></div>
+        <div><span class="num">7</span><span class="lbl">conn. types</span></div>
+        <div><span class="num">3D</span><span class="lbl">toroidal</span></div>
+      </div>
+      <div class="btn-row">
+        <button id="embed-matrix" class="btn btn-primary" type="button">↳ embed in page</button>
+        <a href="https://twl.today/matrix" target="_blank" rel="noopener" class="btn">launch ↗</a>
+        <a href="papers/circulatory_pressure_architectures.pdf" class="btn">read paper</a>
+      </div>
+    </div>
+    <div class="instrument-frame" id="matrix-frame">
+      <div class="matrix-poster" id="matrix-poster" role="button" tabindex="0" aria-label="Embed the Polymorphic Matrix">
+        <svg viewBox="0 0 440 330" style="width:100%;height:100%;display:block;" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="torus-glow" cx="50%" cy="50%" r="60%">
+              <stop offset="0%" stop-color="#6cd2ee" stop-opacity="0.10"/>
+              <stop offset="100%" stop-color="#6cd2ee" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="440" height="330" fill="url(#torus-glow)"/>
+          <ellipse cx="220" cy="165" rx="172" ry="55" fill="none" stroke="#1a2230" stroke-width="0.7"/>
+          <ellipse cx="220" cy="165" rx="58"  ry="18" fill="none" stroke="#1a2230" stroke-width="0.7"/>
+          <path d="M 48 165 Q 220 80 392 165" stroke="#1a2230" stroke-width="0.7" fill="none"/>
+          <path d="M 48 165 Q 220 250 392 165" stroke="#1a2230" stroke-width="0.7" fill="none" stroke-dasharray="2 3"/>
+          <line x1="220.0" y1="189.1" x2="239.3" y2="217.8" stroke="#6cd2ee" stroke-opacity="0.35" stroke-width="0.78"/>
+          <line x1="220.0" y1="189.1" x2="189.1" y2="232.4" stroke="#6cd2ee" stroke-opacity="0.29" stroke-width="0.73"/>
+          <line x1="329.3" y1="160.9" x2="220.0" y2="189.1" stroke="#b3a1ec" stroke-opacity="0.18" stroke-width="0.52"/>
+          <line x1="238.6" y1="121.3" x2="220.0" y2="142.0" stroke="#6cd2ee" stroke-opacity="0.55" stroke-width="0.97"/>
+          <line x1="120.4" y1="161.7" x2="238.6" y2="121.3" stroke="#b3a1ec" stroke-opacity="0.49" stroke-width="0.75"/>
+          <line x1="333.6" y1="225.4" x2="288.6" y2="191.0" stroke="#6cd2ee" stroke-opacity="0.57" stroke-width="0.98"/>
+          <line x1="332.1" y1="170.8" x2="288.6" y2="191.0" stroke="#b3a1ec" stroke-opacity="0.53" stroke-width="0.78"/>
+          <line x1="398.5" y1="163.1" x2="352.9" y2="199.4" stroke="#6cd2ee" stroke-opacity="0.57" stroke-width="0.99"/>
+          <line x1="398.5" y1="163.1" x2="276.6" y2="241.1" stroke="#b3a1ec" stroke-opacity="0.54" stroke-width="0.79"/>
+          <line x1="64.7"  y1="165.4" x2="372.8" y2="142.5" stroke="#d6a45c" stroke-opacity="0.61" stroke-width="0.66"/>
+          <line x1="276.6" y1="241.1" x2="239.3" y2="217.8" stroke="#6cd2ee" stroke-opacity="0.63" stroke-width="1.04"/>
+          <line x1="352.9" y1="199.4" x2="239.3" y2="217.8" stroke="#b3a1ec" stroke-opacity="0.67" stroke-width="0.89"/>
+          <circle cx="220.0" cy="142.0" r="3.89" fill="#6cd2ee" fill-opacity="1.0"/>
+          <circle cx="238.6" cy="121.3" r="2.44" fill="#6cd2ee" fill-opacity="0.66"/>
+          <circle cx="332.1" cy="170.8" r="3.62" fill="#6cd2ee" fill-opacity="0.94"/>
+          <circle cx="398.5" cy="163.1" r="2.62" fill="#d6a45c" fill-opacity="0.71"/>
+          <circle cx="276.6" cy="241.1" r="3.62" fill="#6cd2ee" fill-opacity="0.94"/>
+          <circle cx="64.7"  cy="165.4" r="3.63" fill="#b3a1ec" fill-opacity="0.94"/>
+          <circle cx="177.6" cy="229.6" r="3.73" fill="#d6a45c" fill-opacity="0.96"/>
+          <circle cx="120.4" cy="161.7" r="3.48" fill="#6cd2ee" fill-opacity="0.90"/>
+          <circle cx="352.9" cy="199.4" r="3.87" fill="#6cd2ee" fill-opacity="0.99"/>
+          <circle cx="333.6" cy="225.4" r="3.88" fill="#6cd2ee" fill-opacity="1.0"/>
+          <circle cx="288.6" cy="191.0" r="2.56" fill="#b3a1ec" fill-opacity="0.69"/>
+          <circle cx="220.0" cy="189.1" r="1.50" fill="#6cd2ee" fill-opacity="0.45"/>
+          <circle cx="239.3" cy="217.8" r="3.31" fill="#6cd2ee" fill-opacity="0.86"/>
+        </svg>
+        <div class="poster-overlay">
+          <span>preview · no external load until opt-in</span>
+          <span class="play">▸ load live matrix</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-
-
-
-<section>
-
-<h2>Solutions</h2>
-
-<h3>Functional</h3>
-
-<ul>
-<li>AcePaste</li>
-<li>Errorfect</li>
-</ul>
-
-
-<h3>Available</h3>
-
-<ul>
-<li>Linguistic structure audits (Errorfect / CogLex methodology)</li>
-<li>Cognitive influence analysis</li>
-<li>Systems research consulting</li>
-</ul>
-
-
-<h3>Funding Needed</h3>
-
-<ul>
-<li>TrackrSmackr development</li>
-<li>SugarCypher platform</li>
-<li>Polytraxylon infrastructure system</li>
-<li>Psi visualization platform</li>
-<li>Arttra living gallery installations</li>
-</ul>
-
+<!-- ── ACTIVE SYSTEMS RESEARCH ── -->
+<section class="section" id="systems" aria-label="Active systems research">
+  <div class="section-head">
+    <div class="marker">active systems research</div>
+    <h2>Outside the six surfaces — same posture, <em>adjacent domains</em>.</h2>
+    <p class="lede">The work below extends the upstream-architectural posture into venture formation, nutrition, and integrated infrastructure — without claiming new methodological surfaces. Listed so the body of work is legible in one place.</p>
+  </div>
+  <div class="tile-grid --3">
+    <div class="system-card" data-posture="defend">
+      <div class="sys-label">venture · narrative integrity</div>
+      <h3 class="sys-name">SugarCypher</h3>
+      <p class="sys-desc">Nutritional signal intelligence platform mapping sugar exposure patterns from receipts and product data. Translates commercial reformulation into visible downstream consumption metrics. Same architectural move as AcePaste — surface what was hidden.</p>
+      <div class="sys-status">prototype</div>
+    </div>
+    <div class="system-card" data-posture="defend">
+      <div class="sys-label">venture · narrative integrity at formation</div>
+      <h3 class="sys-name">Foremind</h3>
+      <p class="sys-desc">Venture-architecture framework enforcing narrative integrity during company formation — defending against the malign upstream shaping that turns a stated mission into something else by month thirty-six.</p>
+      <div class="sys-status">in development</div>
+    </div>
+    <div class="system-card" data-posture="construct">
+      <div class="sys-label">infrastructure · integrated systems</div>
+      <h3 class="sys-name">Polytraxylon</h3>
+      <p class="sys-desc">Integrated compute-energy-habitat megastructure research initiative. Multi-system architecture integrating energy generation, compute, desalination, and habitat as one upstream architecture rather than four downstream subsystems retrofitted together.</p>
+      <div class="sys-status">funding-needed</div>
+    </div>
+  </div>
 </section>
-
-
-
+<!-- ── PROGRAM TEASER ── -->
+<section class="section" id="program" aria-label="The program">
+  <div class="section-head">
+    <div class="marker --arch">the program · seven surfaces · one thesis</div>
+    <h2>Six surfaces of intervention. One <em>institutional vehicle</em>.</h2>
+  </div>
+  <div class="teaser-wrap">
+    <div class="teaser-body">
+      <p>Four surfaces <span style="color:var(--defend)">defend</span> against malign upstream shaping — exposing cognitive operators, stripping invisible markup, intercepting behavioral surveillance, confounding adversarial reconnaissance. Two surfaces <span style="color:var(--construct)">construct</span> beneficial upstream structure — rebuilding social-cognitive identity outside mean-seeking platforms, and extending spatial intelligence to physics-bound RF sensing.</p>
+      <p>The institutional vehicle at the centroid is ThinkWell Labs itself: the program's existence as a coherent body of work rather than a scattered portfolio is the load-bearing intervention at this scale. Coherent bodies compound. Scattered output does not.</p>
+      <a class="teaser-cta" href="program.html">read the full program statement</a>
+    </div>
+    <div class="teaser-svg-wrap" aria-hidden="true">
+      <!-- static topology diagram, no interaction -->
+      <svg viewBox="0 0 800 800" role="img" aria-label="Program topology — seven nodes">
+        <circle cx="400" cy="400" r="340" fill="none" stroke="#101822" stroke-width="1" opacity="0.7"/>
+        <circle cx="400" cy="400" r="270" fill="none" stroke="#0d141d" stroke-width="1" opacity="0.7"/>
+        <circle cx="400" cy="400" r="180" fill="none" stroke="#0c1219" stroke-width="1" opacity="0.7"/>
+        <g stroke-linecap="round">
+          <line class="t-edge t-spoke" x1="400" y1="400" x2="400"   y2="180"   stroke="#3a3146"/>
+          <line class="t-edge t-spoke" x1="400" y1="400" x2="590.5" y2="290"   stroke="#3a3146"/>
+          <line class="t-edge t-spoke" x1="400" y1="400" x2="590.5" y2="510"   stroke="#3a3146"/>
+          <line class="t-edge t-spoke" x1="400" y1="400" x2="400"   y2="620"   stroke="#3a3146"/>
+          <line class="t-edge t-spoke" x1="400" y1="400" x2="209.5" y2="510"   stroke="#3a3146"/>
+          <line class="t-edge t-spoke" x1="400" y1="400" x2="209.5" y2="290"   stroke="#3a3146"/>
+        </g>
+        <defs>
+          <linearGradient id="tg-dd" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6cd2ee"/><stop offset="100%" stop-color="#6cd2ee"/></linearGradient>
+          <linearGradient id="tg-dc" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6cd2ee"/><stop offset="100%" stop-color="#b3a1ec"/></linearGradient>
+          <linearGradient id="tg-cc" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b3a1ec"/><stop offset="100%" stop-color="#b3a1ec"/></linearGradient>
+        </defs>
+        <g stroke-linecap="round">
+          <line class="t-edge" stroke="url(#tg-dd)" x1="400"   y1="180"   x2="590.5" y2="290"/>
+          <line class="t-edge" stroke="url(#tg-dd)" x1="590.5" y1="290"   x2="590.5" y2="510"/>
+          <line class="t-edge" stroke="url(#tg-dd)" x1="590.5" y1="510"   x2="400"   y2="620"/>
+          <line class="t-edge" stroke="url(#tg-dc)" x1="400"   y1="620"   x2="209.5" y2="510"/>
+          <line class="t-edge" stroke="url(#tg-cc)" x1="209.5" y1="510"   x2="209.5" y2="290"/>
+          <line class="t-edge" stroke="url(#tg-dc)" x1="209.5" y1="290"   x2="400"   y2="180"/>
+          <line class="t-edge" stroke="url(#tg-dd)" x1="400"   y1="180"   x2="400"   y2="620"/>
+          <line class="t-edge" stroke="url(#tg-dc)" x1="590.5" y1="290"   x2="209.5" y2="510"/>
+          <line class="t-edge" stroke="url(#tg-dc)" x1="590.5" y1="510"   x2="209.5" y2="290"/>
+        </g>
+        <!-- institutional vehicle (core) -->
+        <g class="t-n-core">
+          <circle class="t-node-ring" cx="400" cy="400" r="38"/>
+          <circle class="t-node-core" cx="400" cy="400" r="7"/>
+          <text font-family="ui-monospace,monospace" font-size="11" fill="#6a7280" letter-spacing="0.1em" text-anchor="middle" x="400" y="448">institutional</text>
+        </g>
+        <!-- defend nodes -->
+        <g class="t-n-defend">
+          <circle class="t-node-ring" cx="400"   cy="180" r="30"/><circle class="t-node-core" cx="400"   cy="180" r="8"/>
+          <circle class="t-node-ring" cx="590.5" cy="290" r="30"/><circle class="t-node-core" cx="590.5" cy="290" r="8"/>
+          <circle class="t-node-ring" cx="590.5" cy="510" r="28"/><circle class="t-node-core" cx="590.5" cy="510" r="7"/>
+          <circle class="t-node-ring" cx="400"   cy="620" r="24"/><circle class="t-node-core" cx="400"   cy="620" r="5"/>
+        </g>
+        <!-- construct nodes -->
+        <g class="t-n-construct">
+          <circle class="t-node-ring" cx="209.5" cy="510" r="28"/><circle class="t-node-core" cx="209.5" cy="510" r="7"/>
+          <circle class="t-node-ring" cx="209.5" cy="290" r="26"/><circle class="t-node-core" cx="209.5" cy="290" r="6"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+<!-- ── ABOUT ── -->
+<section class="section" id="about" aria-label="About the lab">
+  <div class="section-head">
+    <div class="marker">about the lab</div>
+    <h2>Upstream, not downstream.</h2>
+  </div>
+  <div class="about-body">
+    <p>ThinkWell Labs investigates upstream structures rather than downstream symptoms. The work explores how language, incentives, environments, and physical systems shape perception and decision-making long before individuals believe they are choosing freely.</p>
+  </div>
+</section>
+<!-- ── UPDATES ── -->
+<section class="section" id="updates" aria-label="Updates">
+  <div class="section-head">
+    <div class="marker --up">updates · low volume · no spam</div>
+    <h2>Occasional research notes and <em>new tool announcements</em>.</h2>
+  </div>
+  <div class="subscribe-wrap">
+    <p>Updates on new papers, tools, and lab developments. Low volume. No spam. Unsubscribe any time.</p>
+    <form class="subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/next" method="post" target="_blank">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+</div><!-- /shell -->
+</main>
 <footer>
-
-ThinkWell Labs — Independent Systems Research
-
+  <div class="foot-grid">
+    <div>
+      <h5>thinkwell labs</h5>
+      <p class="colophon">
+        <strong>Investigates upstream structures rather than downstream symptoms.</strong><br>
+        Independent research laboratory.<br>
+        Briar M. Greenway, principal.<br>
+        <a href="mailto:b@twl.today" style="color:var(--ink-soft);border-bottom:1px solid var(--rule);">b@twl.today</a> · twl.today
+      </p>
+      <div class="commitments">
+        <p class="colophon">
+          <b>commitments instantiated here:</b><br>
+          · zero trackers, zero analytics, zero external requests<br>
+          · static html · client-side only · no build step<br>
+          · source: <a href="https://github.com/sugarcypher/thinkwell-labs" rel="noopener">github.com/sugarcypher/thinkwell-labs</a>
+        </p>
+      </div>
+    </div>
+    <div>
+      <h5>products</h5>
+      <ul>
+        <li><a href="https://errorfect.com" rel="noopener">Errorfect ↗</a></li>
+        <li><a href="https://acepaste.xyz" rel="noopener">Acepaste ↗</a></li>
+        <li><a href="https://cookiebouncer.app" rel="noopener">TrackRSmackR ↗</a></li>
+        <li><a href="https://volavue.fyi" rel="noopener">VolaVue ↗</a></li>
+        <li><a href="https://toroid.fyi" rel="noopener">Toroid ↗</a></li>
+        <li><a href="https://psifiles.fyi" rel="noopener">PsiFiles ↗</a></li>
+        <li><a href="https://sorted.quest" rel="noopener">Polygonal Minds ↗</a></li>
+        <li><a href="https://axisoffun.itch.io/sches" rel="noopener">Sches ↗</a></li>
+        <li><a href="https://arttra.art" rel="noopener">Arttra ↗</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>papers</h5>
+      <ul>
+        <li><a href="papers/named-and-counted.pdf">Named and Counted</a></li>
+        <li><a href="papers/Errorfect_White_Paper.pdf">Errorfect</a></li>
+        <li><a href="papers/Caecusoscopy-white-paper.pdf">Caecusoscopy</a></li>
+        <li><a href="papers/circulatory_pressure_architectures.pdf">Circulatory Pressure</a></li>
+        <li><a href="invisible-text.html">Invisible Text Attack</a></li>
+        <li><a href="papers.html">all papers →</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>structure</h5>
+      <ul>
+        <li><a href="program.html">program statement</a></li>
+        <li><a href="program.html#topology">topology</a></li>
+        <li><a href="program.html#methodology">methodology</a></li>
+        <li><a href="ocs.html">OCS framework</a></li>
+        <li><a href="#systems">active systems</a></li>
+        <li><a href="program.html#engage">engage</a></li>
+        <li><a href="mailto:b@twl.today">contact</a></li>
+        <li><a href="privacy.html">privacy</a></li>
+        <li><a href="terms.html">terms</a></li>
+        <li><a href="https://github.com/sugarcypher/thinkwell-labs" rel="noopener">source ↗</a></li>
+      </ul>
+    </div>
+  </div>
 </footer>
-
-
+<div class="network-footer">
+  <strong>a thinkwell labs offering</strong>
+  <a href="https://twl.today">TWL</a><span class="sep">·</span>
+  <a href="https://errorfect.com" rel="noopener">Errorfect</a><span class="sep">·</span>
+  <a href="https://acepaste.xyz" rel="noopener">Acepaste</a><span class="sep">·</span>
+  <a href="https://cookiebouncer.app" rel="noopener">CookieBouncer</a><span class="sep">·</span>
+  <a href="https://volavue.fyi" rel="noopener">VolaVue</a><span class="sep">·</span>
+  <a href="https://toroid.fyi" rel="noopener">Toroid</a><span class="sep">·</span>
+  <a href="https://psifiles.fyi" rel="noopener">PsiFiles</a><span class="sep">·</span>
+  <a href="https://sorted.quest" rel="noopener">Polygonal Minds</a><span class="sep">·</span>
+  <a href="https://axisoffun.itch.io/sches" rel="noopener">Sches</a><span class="sep">·</span>
+  <a href="https://arttra.art" rel="noopener">Arttra</a>
+</div>
+<script>
+(function () {
+  'use strict';
+  /* ── Polymorphic Matrix embed ── */
+  var poster   = document.getElementById('matrix-poster');
+  var frame    = document.getElementById('matrix-frame');
+  var embedBtn = document.getElementById('embed-matrix');
+  var matrixSrc = 'https://twl.today/matrix';
+  function loadMatrix() {
+    if (!frame) return;
+    var iframe = document.createElement('iframe');
+    iframe.src = matrixSrc;
+    iframe.title = 'Polymorphic Matrix — live 3D topology';
+    iframe.setAttribute('loading', 'lazy');
+    frame.innerHTML = '';
+    frame.appendChild(iframe);
+    if (embedBtn) embedBtn.setAttribute('disabled', 'true');
+  }
+  if (poster) {
+    poster.addEventListener('click', loadMatrix);
+    poster.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadMatrix(); }
+    });
+  }
+  if (embedBtn) embedBtn.addEventListener('click', loadMatrix);
+  /* ── Theme toggle ── */
+  window.toggleTheme = function () {
+    var html = document.documentElement;
+    var current = html.getAttribute('data-theme') || 'dark';
+    var next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    var btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = next === 'dark' ? '☀ light' : '☾ dark';
+    try { localStorage.setItem('twl-theme', next); } catch(e) {}
+  };
+  /* Restore saved theme */
+  (function () {
+    try {
+      var saved = localStorage.getItem('twl-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+        var btn = document.getElementById('themeToggle');
+        if (btn) btn.textContent = saved === 'dark' ? '☀ light' : '☾ dark';
+      }
+    } catch(e) {}
+  })();
+  /* ── Product accordion ── */
+  window.toggleProd = function (id) {
+    var row = document.getElementById('pr-' + id);
+    if (!row) return;
+    var isOpen = row.classList.contains('open');
+    document.querySelectorAll('.prod-row.open').forEach(function (r) {
+      r.classList.remove('open');
+      var btn = r.querySelector('.prod-row-header');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      row.classList.add('open');
+      var btn = row.querySelector('.prod-row-header');
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+    }
+  };
+  /* ── YouTube opt-in ── */
+  window.loadYT = function (poster) {
+    var src = poster.getAttribute('data-src');
+    if (!src) return;
+    var iframe = document.createElement('iframe');
+    iframe.src = src + '?autoplay=1';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:6px;';
+    poster.parentNode.replaceChild(iframe, poster);
+  };
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Research Papers — ThinkWell Labs</title>
+<meta name="description" content="ThinkWell Labs research papers — open-access analytical work on linguistic cognition, political systems, methodology, nutrition, consciousness, and upstream architectures. CC BY 4.0.">
+<meta name="author" content="Briar M. Greenway">
+<meta name="theme-color" content="#060a0f">
+<link rel="canonical" href="https://twl.today/papers.html">
+<link rel="icon" href="assets/twl-logo.jpeg" type="image/png">
+<link rel="apple-touch-icon" href="assets/twl-logo.jpeg">
+<meta property="og:title" content="Research Papers — ThinkWell Labs">
+<meta property="og:description" content="Open-access analytical work. CC BY 4.0. Adaptations to new domains are the program's preferred mode of growth.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://twl.today/papers.html">
+<style>
+:root {
+  --bg:           #060a0f;
+  --bg-rise:      #0c1118;
+  --bg-card:      #0a1019;
+  --bg-deep:      #03060a;
+  --ink:          #e9ecef;
+  --ink-soft:     #a8b1bc;
+  --ink-faint:    #6a7280;
+  --ink-dim:      #404853;
+  --rule:         #18202c;
+  --rule-soft:    #0f151e;
+
+  --upstream:     #d6a45c;
+  --architecture: #6cd2ee;
+  --downstream:   #b3a1ec;
+  --defend:       #6cd2ee;
+  --construct:    #b3a1ec;
+  --core:         #d6a45c;
+  --ok:           #7fcf8a;
+
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --serif: "Iowan Old Style", "Charter", "Source Serif 4", Georgia, "Times New Roman", serif;
+
+  --pad: clamp(20px, 4vw, 56px);
+  --measure: 68ch;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(900px 700px at 14% 6%,  rgba(214,164,92,0.07), transparent 60%),
+    radial-gradient(1100px 900px at 86% 20%, rgba(108,210,238,0.06), transparent 60%),
+    radial-gradient(1000px 1100px at 50% 100%, rgba(179,161,236,0.05), transparent 65%),
+    linear-gradient(180deg, #06090d 0%, #03060a 100%);
+}
+main, header, footer, nav { position: relative; z-index: 1; }
+
+a { color: var(--architecture); text-decoration: none; border-bottom: 1px solid color-mix(in oklab, var(--architecture) 30%, transparent); transition: border-color .15s, color .15s; }
+a:hover { color: #b6e9f7; border-bottom-color: var(--architecture); }
+a:focus-visible { outline: 2px solid var(--architecture); outline-offset: 3px; border-radius: 2px; }
+
+/* ─── status bar ─── */
+.status {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center;
+  padding: 9px var(--pad);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  background: color-mix(in oklab, var(--bg-deep) 90%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.status .dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--ok); margin-right:6px; vertical-align:1px; box-shadow:0 0 8px color-mix(in oklab, var(--ok) 60%, transparent); }
+.status .v { color: var(--ink-soft); }
+.status .sep { color: var(--ink-dim); }
+.status a { color: var(--ink-faint); border: none; }
+.status a:hover { color: var(--ink); }
+
+/* ─── shell ─── */
+.shell { max-width: 1100px; margin: 0 auto; padding: 0 var(--pad); }
+
+/* ─── page header ─── */
+.page-header { padding: clamp(56px, 8vw, 100px) 0 clamp(36px, 5vw, 60px); }
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.eyebrow a { color: var(--ink-faint); border: none; }
+.eyebrow a:hover { color: var(--ink); }
+.eyebrow-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--upstream); box-shadow: 0 0 10px color-mix(in oklab, var(--upstream) 60%, transparent); }
+h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 5.5vw, 68px); line-height: 0.96; letter-spacing: -0.022em; margin: 0 0 28px; color: var(--ink); }
+h1 em { font-style: italic; }
+.page-lede { font-family: var(--serif); font-size: clamp(16px, 1.9vw, 20px); line-height: 1.55; color: var(--ink-soft); max-width: 58ch; margin: 0; }
+.page-lede em { color: var(--ink); font-style: italic; }
+.license-note { margin-top: 18px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--ink-faint); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.license-note .badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border: 1px solid var(--rule); border-radius: 3px; font-size: 10px; letter-spacing: 0.08em; color: var(--ok); }
+
+/* ─── section header ─── */
+.section { padding: clamp(48px, 7vw, 80px) 0; border-top: 1px solid var(--rule-soft); }
+.section-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 28px; display: flex; align-items: center; gap: 12px;
+}
+.section-label .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; }
+.section-label.--arch { color: var(--architecture); }
+.section-label.--arch .dot { background: var(--architecture); box-shadow: 0 0 8px color-mix(in oklab, var(--architecture) 60%, transparent); }
+.section-label.--up { color: var(--upstream); }
+.section-label.--up .dot { background: var(--upstream); box-shadow: 0 0 8px color-mix(in oklab, var(--upstream) 60%, transparent); }
+.section-label.--construct { color: var(--construct); }
+.section-label.--construct .dot { background: var(--construct); box-shadow: 0 0 8px color-mix(in oklab, var(--construct) 60%, transparent); }
+.section-label.--faint { color: var(--ink-faint); }
+.section-label.--faint .dot { background: var(--ink-dim); }
+
+/* ─── paper list ─── */
+.paper-list { display: flex; flex-direction: column; gap: 0; }
+
+.paper-row {
+  display: grid;
+  grid-template-columns: 3fr 1.8fr 120px;
+  gap: 24px 32px;
+  align-items: start;
+  padding: 28px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.paper-row:first-child { border-top: none; }
+@media (max-width: 860px) {
+  .paper-row { grid-template-columns: 1fr; gap: 12px; }
+}
+
+.paper-row .row-main {}
+.paper-row .row-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.paper-row .row-tag.--arch   { color: var(--architecture); }
+.paper-row .row-tag.--up     { color: var(--upstream); }
+.paper-row .row-tag.--const  { color: var(--construct); }
+.paper-row .row-tag.--core   { color: var(--core); }
+.paper-row .row-tag.--faint  { color: var(--ink-faint); }
+
+.paper-row h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(20px, 2.6vw, 28px); line-height: 1.15;
+  letter-spacing: -0.012em; margin: 0 0 12px; color: var(--ink);
+}
+.paper-row h2 a { color: var(--ink); border-bottom: 1px solid color-mix(in oklab, var(--ink) 20%, transparent); }
+.paper-row h2 a:hover { color: var(--architecture); }
+
+.paper-row .row-desc { color: var(--ink-soft); font-size: 15px; line-height: 1.7; margin: 0 0 14px; max-width: var(--measure); }
+.paper-row .row-abstract { color: var(--ink-faint); font-size: 13.5px; line-height: 1.65; margin: 0; font-style: italic; border-left: 2px solid var(--rule); padding-left: 14px; }
+
+.paper-row .row-meta {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--ink-faint);
+  display: flex; flex-direction: column; gap: 8px; padding-top: 4px;
+}
+.paper-row .row-meta .meta-item { display: flex; flex-direction: column; gap: 2px; }
+.paper-row .row-meta .meta-key { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); }
+.paper-row .row-meta .meta-val { color: var(--ink-soft); }
+
+.paper-row .row-action { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
+.dl-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 14px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  border-radius: 4px; cursor: pointer; white-space: nowrap;
+  background: transparent; color: var(--architecture);
+  border: 1px solid color-mix(in oklab, var(--architecture) 40%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--architecture) 40%, transparent);
+  transition: border-color .15s, background .15s;
+}
+.dl-btn:hover { border-color: var(--architecture); background: color-mix(in oklab, var(--architecture) 10%, transparent); color: #b6e9f7; }
+.dl-btn.--secondary { color: var(--ink-faint); border-color: var(--rule); }
+.dl-btn.--secondary:hover { color: var(--ink); border-color: color-mix(in oklab, var(--ink-soft) 40%, transparent); background: color-mix(in oklab, var(--ink-dim) 15%, transparent); }
+
+.paper-row .row-size { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: var(--ink-dim); }
+
+/* ─── methodology note card ─── */
+.method-note {
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--architecture);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--bg-rise) 40%, transparent);
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 32px;
+}
+@media (max-width: 700px) { .method-note { grid-template-columns: 1fr; } }
+.method-note .note-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--architecture); margin-bottom: 8px; }
+.method-note .note-body { font-size: 14px; color: var(--ink-soft); line-height: 1.65; }
+.method-note .note-body strong { color: var(--ink); font-weight: 500; }
+.method-note .note-body a { color: var(--architecture); }
+
+/* ─── footer ─── */
+footer {
+  margin-top: 30px; padding: 50px var(--pad) 60px;
+  border-top: 1px solid var(--rule); background: var(--bg-deep);
+}
+footer .colophon { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); max-width: 1100px; margin: 0 auto; line-height: 1.7; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: start; }
+footer .colophon strong { color: var(--ink-soft); font-weight: 500; }
+footer .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+footer .foot-links a { color: var(--ink-faint); border: none; font-size: 11px; font-family: var(--mono); }
+footer .foot-links a:hover { color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+::selection { background: color-mix(in oklab, var(--architecture) 35%, transparent); color: var(--ink); }
+
+/* ─── fixed chrome ─── */
+.site-logo-link {
+  position: fixed; top: 16px; right: 24px; z-index: 200;
+  display: block; line-height: 0; border: none;
+}
+.site-logo {
+  width: 88px; height: auto; display: block;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0,0,0,.3);
+  transition: opacity .2s;
+}
+.site-logo:hover { opacity: 0.82; }
+.theme-toggle { position:fixed; top:22px; left:24px; z-index:200; font-family:var(--mono); font-size:11px; letter-spacing:.06em; background:color-mix(in oklab,var(--bg-deep) 88%,transparent); backdrop-filter:blur(10px); border:1px solid var(--rule); border-radius:20px; padding:5px 13px; cursor:pointer; color:var(--ink-faint); transition:border-color .15s,color .15s; white-space:nowrap; }
+.theme-toggle:hover { border-color:var(--architecture); color:var(--architecture); }
+@media(max-width:600px){ .site-logo{width:40px;height:40px;top:14px;right:14px;} .theme-toggle{top:16px;left:14px;padding:4px 10px;font-size:10px;} }
+</style>
+</head>
+<body>
+<a href="index.html" class="site-logo-link"><img src="assets/twl-logo.jpeg" alt="ThinkWell Labs" class="site-logo"></a>
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">☀ light</button>
+
+
+
+<main>
+<div class="shell">
+
+<header class="page-header">
+  <div class="eyebrow">
+    <span class="eyebrow-dot"></span>
+    <a href="index.html">twl.today</a> · research papers
+  </div>
+  <h1>Published<br><em>analytical</em> work.</h1>
+  <p class="page-lede">All papers publish under <em>CC BY 4.0</em>. Adaptations of the methodology to new domains — new fields, regions, languages, and surfaces of intervention — are the program's preferred mode of growth.</p>
+  <div class="license-note">
+    <span class="badge">CC BY 4.0</span>
+    <span>use · adapt · redistribute with attribution · no permission required</span>
+  </div>
+</header>
+
+<!-- ── LINGUISTIC-COGNITIVE ── -->
+<section class="section" id="linguistic-cognitive">
+  <div class="section-label --arch"><span class="dot"></span> linguistic-cognitive surface · i</div>
+  <div class="paper-list">
+
+    <div class="paper-row">
+      <div class="row-main">
+        <div class="row-tag --arch">linguistic-cognitive · white paper · 2026</div>
+        <h2><a href="papers/Errorfect_White_Paper.pdf">Errorfect: The Linguistic Autopsy</a></h2>
+        <p class="row-desc">Sequential disruption protocol for exposing hidden cognitive operators in natural language. Formalizes the mask-mechanism distinction and situates the method within ACT, CBT, and narrative therapy. Applications span personal metacognitive hygiene through institutional language audit.</p>
+        <p class="row-abstract">A word doesn't just name — it loads. <em>Perfect</em>, <em>natural</em>, <em>just</em>: these install assumptions before evaluation begins. Errorfect disrupts surface form across four levels (orthographic, phonological, syllabary, morphological) to expose the operator beneath the label — the DACRI Level 1 methodology.</p>
+      </div>
+      <div class="row-meta">
+        <div class="meta-item"><div class="meta-key">series</div><div class="meta-val">ThinkWell White Paper</div></div>
+        <div class="meta-item"><div class="meta-key">domain</div><div class="meta-val">Linguistic-cognitive</div></div>
+        <div class="meta-item"><div class="meta-key">method</div><div class="meta-val">DACRI Level 1</div></div>
+        <div class="meta-item"><div class="meta-key">license</div><div class="meta-val">CC BY 4.0</div></div>
+      </div>
+      <div class="row-action">
+        <a class="dl-btn" href="papers/Errorfect_White_Paper.pdf">↓ PDF <span class="row-size">570 KB</span></a>
+        <a class="dl-btn --secondary" href="https://errorfect.com" rel="noopener">live tool ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── POLITICAL SYSTEMS ── -->
+<section class="section" id="political-systems">
+  <div class="section-label --construct"><span class="dot"></span> political systems · polymorphic matrix</div>
+  <div class="paper-list">
+
+    <div class="paper-row">
+      <div class="row-main">
+        <div class="row-tag --const">political systems · instrument paper · 2026</div>
+        <h2><a href="papers/circulatory_pressure_architectures.pdf">Circulatory Pressure Architectures</a></h2>
+        <p class="row-desc">Full analytical mapping of the pressure topology underlying the Polymorphic Matrix — from apparatus mechanisms through convergence dynamics to erosion outputs and feedback loops. The paper that documents the 62-node, 200-edge model's structural logic.</p>
+        <p class="row-abstract">Democratic systems don't collapse from single shock events. They erode through sustained pressure along multiple circulatory channels simultaneously — each individually deniable, collectively decisive. This paper names the architecture.</p>
+      </div>
+      <div class="row-meta">
+        <div class="meta-item"><div class="meta-key">series</div><div class="meta-val">ThinkWell Research Paper</div></div>
+        <div class="meta-item"><div class="meta-key">domain</div><div class="meta-val">Political systems</div></div>
+        <div class="meta-item"><div class="meta-key">instrument</div><div class="meta-val">Polymorphic Matrix</div></div>
+        <div class="meta-item"><div class="meta-key">license</div><div class="meta-val">CC BY 4.0</div></div>
+      </div>
+      <div class="row-action">
+        <a class="dl-btn" href="papers/circulatory_pressure_architectures.pdf">↓ PDF <span class="row-size">1.1 MB</span></a>
+        <a class="dl-btn --secondary" href="https://twl.today/matrix" target="_blank" rel="noopener">live matrix ↗</a>
+      </div>
+    </div>
+
+    <div class="paper-row">
+      <div class="row-main">
+        <div class="row-tag --const">political systems · summary · 2026</div>
+        <h2><a href="papers/circulatory_pressure_architectures_summary.pdf">Circulatory Pressure Architectures — Summary</a></h2>
+        <p class="row-desc">Compressed overview of the circulatory pressure framework for rapid orientation. Covers the apparatus taxonomy, convergence mechanisms, and erosion typology without the full analytical substrate. Entry point before the complete paper.</p>
+      </div>
+      <div class="row-meta">
+        <div class="meta-item"><div class="meta-key">series</div><div class="meta-val">ThinkWell Summary</div></div>
+        <div class="meta-item"><div class="meta-key">companion</div><div class="meta-val">Full paper above</div></div>
+        <div class="meta-item"><div class="meta-key">license</div><div class="meta-val">CC BY 4.0</div></div>
+      </div>
+      <div class="row-action">
+        <a class="dl-btn" href="papers/circulatory_pressure_architectures_summary.pdf">↓ PDF <span class="row-size">678 KB</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── METHODOLOGY ── -->
+<section class="section" id="methodology">
+  <div class="section-label --arch"><span class="dot"></span> methodology · upstream structural analysis</div>
+  <div class="paper-list">
+
+    <div class="paper-row">
+      <div class="row-main">
+        <div class="row-tag --arch">methodology · specification · 2026</div>
+        <h2><a href="papers/Caecusoscopy-white-paper.pdf">Caecusoscopy</a></h2>
+        <p class="row-desc">Methodological specification for identifying structural influences that shape perception and institutional outcomes while operating beneath conscious awareness — through systematic examination of downstream trace evidence rather than direct observation of the influence itself.</p>
+        <p class="row-abstract">The word derives from <em>caecus</em> (blind) + <em>scopy</em> (examination). Where direct observation of the upstream structure is impossible or structurally blocked, Caecusoscopy reads the shape of its shadow in the downstream evidence — the institutional equivalent of inferring the deflector from the deflected beam.</p>
+      </div>
+      <div class="row-meta">
+        <div class="meta-item"><div class="meta-key">series</div><div class="meta-val">ThinkWell Research Paper</div></div>
+        <div class="meta-item"><div class="meta-key">domain</div><div class="meta-val">Methodology</div></div>
+        <div class="meta-item"><div class="meta-key">license</div><div class="meta-val">CC BY 4.0</div></div>
+      </div>
+      <div class="row-action">
+        <a class="dl-btn" href="papers/Caecusoscopy-white-paper.pdf">↓ PDF</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── NUTRITION / FOOD SYSTEMS ── -->
+<section class="section" id="nutrition">
+  <div class="section-label --up"><span class="dot"></span> nutrition · food systems · upstream capture</div>
+  <div class="paper-list">
+
+    <div class="paper-row">
+      <div class="row-main">
+        <div class="row-tag --core">nutrition · systems analysis · 2026</div>
+        <h2><a href="#" aria-disabled="true">Food-op: emergence turned psy-op</a></h2>
+        <p class="row-desc">Two-phase structural analysis tracing how the edible/non-edible partition arose through path-dependent evolutionary heuristics, then became a capturable institutional asset once industry actors chose systemic suppression over disclosure of inconvenient evidence.</p>
+        <p class="row-abstract">Phase one: the edibility heuristic is an evolved cognitive shortcut, adaptive under ancestral conditions. Phase two: the apparatus that converted this heuristic into a commercial architecture — not by creating the partition but by capturing control over which signals get routed through it.</p>
+      </div>
+      <div class="row-meta">
+        <div class="meta-item"><div class="meta-key">series</div><div class="meta-val">ThinkWell Research Paper</div></div>
+        <div class="meta-item"><div class="meta-key">domain</div><div class="meta-val">Nutrition / Food systems</div></div>
+        <div class="meta-item"><div class="meta-key">posture</div><div class="meta-val">Defend</div></div>
+        <div class="meta-item"><div class="meta-key">license</div><div class="meta-val">CC BY 4.0</div></div>
+      </div>
+      <div class="row-action">
+        <a class="dl-btn" href="#" aria-disabled="true">↓ PDF</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CONSCIOUSNESS ── -->
+<section class="section" id="consciousness">
+  <div class="section-label --construct"><span class="dot"></span> consciousness · theoretical framework</div>
+  <div class="paper-list">
+
+    <div class="paper-row">
+      <div class="row-main">
+        <div class="row-tag --const">consciousness · theoretical framework · 2026</div>
+        <h2><a href="#" aria-disabled="true">The Electrodynamic Coherence Framework</a></h2>
+        <p class="row-desc">Theoretical framework proposing that consciousness arises through electrodynamic coherence — coupling plasma dynamics, muon transduction, and charge transfer in biological systems to a measurable, structured electromagnetic field rather than a substrate-free information process.</p>
+        <p class="row-abstract">The dominant computational metaphor treats consciousness as an information process that could in principle run on any substrate. The ECF resists this: it proposes that the specific physics of biological electrodynamics — the plasma coherence window, muon-assisted charge tunneling, and structured field coupling — are constitutive rather than incidental to the phenomenon.</p>
+      </div>
+      <div class="row-meta">
+        <div class="meta-item"><div class="meta-key">series</div><div class="meta-val">ThinkWell Research Paper VI</div></div>
+        <div class="meta-item"><div class="meta-key">version</div><div class="meta-val">v1 · 2026</div></div>
+        <div class="meta-item"><div class="meta-key">domain</div><div class="meta-val">Consciousness / Biophysics</div></div>
+        <div class="meta-item"><div class="meta-key">license</div><div class="meta-val">CC BY 4.0</div></div>
+      </div>
+      <div class="row-action">
+        <a class="dl-btn" href="#" aria-disabled="true">↓ PDF</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── AI SECURITY / LLM INTEGRITY ── -->
+<section class="section" id="llm-security">
+  <div class="section-label --up"><span class="dot"></span> AI security · LLM integrity · clipboard attack vectors</div>
+  <div class="paper-list">
+
+    <div class="paper-row">
+      <div class="row-main">
+        <div class="row-tag --up">AI security · LLM workflows · 2026</div>
+        <h2><a href="invisible-text.html">The Invisible Text You're Pasting Into Your LLM</a></h2>
+        <p class="row-desc">Structural analysis of the paste channel as an unguarded input boundary in LLM workflows — how invisible Unicode characters (zero-width spaces, tag character sequences encoding U+E0000–U+E007F range payloads) survive every standard text pipeline and arrive in the model's context window without the human operator's knowledge or review. Includes live embedded demonstrations and the case for paste-boundary inspection as foundational LLM infrastructure.</p>
+        <p class="row-abstract">The conversation about prompt injection has treated visible text as the attack surface. The clipboard is a quieter variation on the same problem — a second input channel that bypasses the visual review layer the entire workflow assumes is happening, while retaining full semantic influence on the model's output. The conditions that make it work are not architectural choices anyone made deliberately; they are the seam where human review and machine processing diverge.</p>
+      </div>
+      <div class="row-meta">
+        <div class="meta-item"><div class="meta-key">series</div><div class="meta-val">ThinkWell Technical Paper</div></div>
+        <div class="meta-item"><div class="meta-key">domain</div><div class="meta-val">AI security</div></div>
+        <div class="meta-item"><div class="meta-key">product</div><div class="meta-val">AcePaste</div></div>
+        <div class="meta-item"><div class="meta-key">format</div><div class="meta-val">Live HTML — embedded invisible chars</div></div>
+        <div class="meta-item"><div class="meta-key">license</div><div class="meta-val">CC BY 4.0</div></div>
+      </div>
+      <div class="row-action">
+        <a class="dl-btn" href="invisible-text.html">read →</a>
+        <a class="dl-btn --secondary" href="https://acepaste.xyz" rel="noopener" target="_blank">AcePaste ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── LICENSING & METHODOLOGY NOTE ── -->
+<section class="section" id="licensing">
+  <div class="section-label --faint"><span class="dot"></span> licensing · adaptation · citation</div>
+  <div class="method-note">
+    <div>
+      <div class="note-label">licensing</div>
+      <div class="note-body">
+        Written work publishes under <strong>CC BY 4.0</strong> — use, adapt, redistribute with attribution. Attribution to the program is requested but not legally required. Site source is open at <a href="https://github.com/sugarcypher/thinkwell-labs" rel="noopener">github.com/sugarcypher/thinkwell-labs</a>. Each live product carries its own license at its own domain.
+      </div>
+    </div>
+    <div>
+      <div class="note-label">suggested citation</div>
+      <div class="note-body" style="font-family: var(--mono); font-size: 12px; color: var(--ink-faint); background: var(--bg-deep); border: 1px solid var(--rule-soft); padding: 12px; border-radius: 4px; white-space: pre-wrap; word-break: break-word; line-height: 1.55;">Greenway, B.M. Upstream Architectures: ThinkWell Labs Research Program (v2.1). ThinkWell Labs, 2026. https://twl.today/</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /shell -->
+</main>
+
+<footer>
+  <div class="colophon">
+    <div>
+      <strong>thinkwell labs</strong> — investigates upstream structures rather than downstream symptoms.<br>
+      Briar M. Greenway, principal · <a href="mailto:b@twl.today" style="color:var(--ink-faint);">b@twl.today</a> · twl.today
+    </div>
+    <div class="foot-links">
+      <a href="index.html">home</a>
+      <a href="program.html">program</a>
+      <a href="ocs.html">OCS</a>
+      <a href="privacy.html">privacy</a>
+      <a href="terms.html">terms</a>
+      <a href="https://github.com/sugarcypher/thinkwell-labs" rel="noopener">source ↗</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
