@@ -312,10 +312,22 @@ footer .foot-links a:hover { color: var(--ink); }
 .theme-toggle:hover { border-color:var(--architecture); color:var(--architecture); }
 @media(max-width:600px){ .site-logo{width:40px;height:40px;top:14px;right:14px;} .theme-toggle{top:16px;left:14px;padding:4px 10px;font-size:10px;} }
 </style>
+<link rel="stylesheet" href="assets/chrome.css">
 </head>
 <body>
 <a href="index.html" class="site-logo-link"><img src="assets/twl-logo.jpeg" alt="ThinkWell Labs" class="site-logo"></a>
-<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">☀ light</button>
+<header class="tw-nav">
+  <div class="tw-nav-inner">
+    <a class="tw-brand" href="./" aria-label="ThinkWell Labs home"><img src="assets/twl-logo-mark.jpeg" alt="" width="34" height="34"><span>ThinkWell <b>Labs</b></span></a>
+    <nav aria-label="Primary">
+      <a href="./#work">Work</a>
+      <a href="papers.html" aria-current="page">Research</a>
+      <a href="./#briar">Briar</a>
+      <a href="program.html" class="tw-hide-sm">Program</a>
+      <a href="./#contact" class="tw-nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
 
 
 
@@ -1706,21 +1718,42 @@ Complete Domain Inventory (valid system domains as of R-09)
 </div><!-- /shell -->
 </main>
 
-<footer>
-  <div class="colophon">
+<footer class="tw-foot">
+  <div class="tw-wrap tw-foot-grid">
     <div>
-      <strong>thinkwell labs</strong> — investigates upstream structures rather than downstream symptoms.<br>
-      B. Greenway, principal · <a href="mailto:b@twl.today" style="color:var(--ink-faint);">b@twl.today</a> · twl.today<br>
-      OCS integrated through R‑09 + Gap Closure Layer · CC BY 4.0
+      <a class="tw-brand" href="./"><img src="assets/twl-logo-mark.jpeg" alt="" width="34" height="34"><span>ThinkWell <b>Labs</b></span></a>
+      <p>Independent research laboratory. One person, upstream.<br>Briar Morgan Greenway, founder &amp; director · <a href="mailto:b@twl.today">b@twl.today</a></p>
+      <p>OCS integrated through R‑09 + Gap Closure Layer · CC BY 4.0</p>
     </div>
-    <div class="foot-links">
-      <a href="index.html">home</a>
-      <a href="program.html">program</a>
-      <a href="papers.html">papers</a>
-      <a href="privacy.html">privacy</a>
-      <a href="terms.html">terms</a>
-      <a href="https://github.com/sugarcypher/thinkwell-labs" rel="noopener">source ↗</a>
+    <div>
+      <h4>Research</h4>
+      <ul>
+        <li><a href="papers.html">All papers</a></li>
+        <li><a href="program.html">Program statement</a></li>
+        <li><a href="invisible-text.html">Invisible text attacks</a></li>
+      </ul>
     </div>
+    <div>
+      <h4>Products</h4>
+      <ul>
+        <li><a href="./#work">All ten products</a></li>
+        <li><a href="https://toroid.fyi" rel="noopener">Toroid</a></li>
+        <li><a href="https://errorfect.com" rel="noopener">Errorfect</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Lab</h4>
+      <ul>
+        <li><a href="./">Home</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="https://github.com/sugarcypher/twl" rel="noopener">Source</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="tw-wrap tw-foot-base">
+    <span>© 2026 ThinkWell Labs LLC · Writing CC BY 4.0</span>
+    <span>No trackers · no analytics · no cookies</span>
   </div>
 </footer>
 

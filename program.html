@@ -277,10 +277,22 @@ footer .commitments b { color: var(--architecture); font-weight: 500; }
 .theme-toggle:hover { border-color:var(--architecture); color:var(--architecture); }
 @media(max-width:600px){ .site-logo{width:40px;height:40px;top:14px;right:14px;} .theme-toggle{top:16px;left:14px;padding:4px 10px;font-size:10px;} }
 </style>
+<link rel="stylesheet" href="assets/chrome.css">
 </head>
 <body>
 <a href="index.html" class="site-logo-link"><img src="assets/twl-logo.jpeg" alt="ThinkWell Labs" class="site-logo"></a>
-<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">☀ light</button>
+<header class="tw-nav">
+  <div class="tw-nav-inner">
+    <a class="tw-brand" href="./" aria-label="ThinkWell Labs home"><img src="assets/twl-logo-mark.jpeg" alt="" width="34" height="34"><span>ThinkWell <b>Labs</b></span></a>
+    <nav aria-label="Primary">
+      <a href="./#work">Work</a>
+      <a href="papers.html">Research</a>
+      <a href="./#briar">Briar</a>
+      <a href="program.html" class="tw-hide-sm" aria-current="page">Program</a>
+      <a href="./#contact" class="tw-nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
 
 
 
@@ -619,49 +631,44 @@ footer .commitments b { color: var(--architecture); font-weight: 500; }
 
 </div></main>
 
-<footer>
-  <div class="foot-grid">
+<footer class="tw-foot">
+  <div class="tw-wrap tw-foot-grid">
     <div>
-      <h5>thinkwell labs</h5>
-      <p class="colophon"><strong>Investigates upstream structures rather than downstream symptoms.</strong><br>Independent research laboratory. Briar M. Greenway, principal.<br><a href="mailto:b@twl.today" style="color:var(--ink-soft);border-bottom:1px solid var(--rule);">b@twl.today</a> · twl.today</p>
-      <div class="commitments"><p class="colophon"><b>commitments instantiated here:</b><br>· zero trackers, zero analytics, zero external requests<br>· static html · client-side only · no build step<br>· source: <a href="https://github.com/sugarcypher/thinkwell-labs" rel="noopener">github.com/sugarcypher/thinkwell-labs</a></p></div>
+      <a class="tw-brand" href="./"><img src="assets/twl-logo-mark.jpeg" alt="" width="34" height="34"><span>ThinkWell <b>Labs</b></span></a>
+      <p>Independent research laboratory. One person, upstream.<br>Briar Morgan Greenway, founder &amp; director · <a href="mailto:b@twl.today">b@twl.today</a></p>
     </div>
     <div>
-      <h5>surfaces</h5>
+      <h4>Program</h4>
       <ul>
-        <li><a href="#topology">i · Errorfect</a></li>
-        <li><a href="#topology">ii · AcePaste</a></li>
-        <li><a href="#topology">iii · TrackRSmackR</a></li>
-        <li><a href="#topology">iv · SCRIM</a></li>
-        <li><a href="#topology">v · Polygonal Minds</a></li>
-        <li><a href="#topology">vi · RF-SIS</a></li>
-        <li><a href="#topology">vii · Institutional Vehicle</a></li>
+        <li><a href="#topology">Topology</a></li>
+        <li><a href="#methodology">Methodology</a></li>
+        <li><a href="#open">Open work</a></li>
+        <li><a href="#engage">Engage</a></li>
       </ul>
     </div>
     <div>
-      <h5>papers</h5>
+      <h4>Research</h4>
       <ul>
-        <li><a href="papers/Errorfect_White_Paper.pdf">Errorfect</a></li>
-        <li><a href="papers/Caecusoscopy-white-paper.pdf">Caecusoscopy</a></li>
-        <li><a href="papers/circulatory_pressure_architectures.pdf">Circulatory Pressure</a></li>
-        <li><a href="papers/circulatory_pressure_architectures_summary.pdf">↳ summary</a></li>
-        <li><a href="papers/epistemology-completeness-checker.pdf">Epistemology Checker</a></li>
-      </ul>
-    </div>
-    <div>
-      <h5>navigation</h5>
-      <ul>
-        <li><a href="index.html">← home</a></li>
-        <li><a href="papers.html">papers</a></li>
+        <li><a href="papers.html">All papers</a></li>
         <li><a href="ocs.html">OCS framework</a></li>
-        <li><a href="#methodology">methodology</a></li>
-        <li><a href="#open">open work</a></li>
-        <li><a href="#engage">engage</a></li>
-        <li><a href="privacy.html">privacy</a></li>
-        <li><a href="terms.html">terms</a></li>
-        <li><a href="https://github.com/sugarcypher/thinkwell-labs" rel="noopener">source ↗</a></li>
+        <li><a href="invisible-text.html">Invisible text attacks</a></li>
+        <li><a href="papers/epistemology-completeness-checker.pdf">Epistemology checker</a></li>
       </ul>
     </div>
+    <div>
+      <h4>Lab</h4>
+      <ul>
+        <li><a href="./">Home</a></li>
+        <li><a href="./#work">Products</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="https://github.com/sugarcypher/twl" rel="noopener">Source</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="tw-wrap tw-foot-base">
+    <span>© 2026 ThinkWell Labs LLC · Writing CC BY 4.0</span>
+    <span>No trackers · no analytics · no cookies</span>
   </div>
 </footer>
 
