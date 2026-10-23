@@ -91,6 +91,9 @@ header.page-head .thesis em { color: var(--ink); font-style: italic; }
 .edge.spoke { opacity: 0.12; stroke-dasharray: 2 4; }
 .edge:hover { opacity: 0.9; stroke-width: 1.8; }
 .node-hit   { fill: transparent; cursor: pointer; }
+.node-hit:focus-visible { outline: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 4 4; }
+.node-block { scroll-margin-top: 84px; transition: box-shadow .4s, background-color .4s; }
+.node-block.is-target { box-shadow: 0 0 0 2px var(--architecture); background-color: color-mix(in oklab, var(--architecture) 8%, transparent); }
 .n-defend    .node-ring, .n-defend    .node-glow { stroke: var(--defend); }
 .n-defend    .node-core   { fill: var(--defend); }
 .n-construct .node-ring, .n-construct .node-glow { stroke: var(--construct); }
@@ -401,7 +404,7 @@ footer .commitments b { color: var(--architecture); font-weight: 500; }
       <p class="lead">Read the program as one statement. Each surface names the upstream structure it intervenes in, the architecture by which it intervenes, and the downstream effect that becomes possible.</p>
 
       <!-- i Errorfect -->
-      <article class="node-block" data-posture="defend">
+      <article class="node-block" id="surface-errorfect" data-posture="defend">
         <div class="head">
           <div class="index"><span class="glyph"></span> i · linguistic-cognitive</div>
           <h3 class="name"><a href="https://errorfect.com" rel="noopener">Errorfect <span class="arrow">↗</span></a></h3>
@@ -422,7 +425,7 @@ footer .commitments b { color: var(--architecture); font-weight: 500; }
       </article>
 
       <!-- ii AcePaste -->
-      <article class="node-block" data-posture="defend">
+      <article class="node-block" id="surface-acepaste" data-posture="defend">
         <div class="head">
           <div class="index"><span class="glyph"></span> ii · text-layer integrity</div>
           <h3 class="name"><a href="https://acepaste.xyz" rel="noopener">AcePaste Cleaner Pro <span class="arrow">↗</span></a></h3>
@@ -449,7 +452,7 @@ footer .commitments b { color: var(--architecture); font-weight: 500; }
       </article>
 
       <!-- iii TrackRSmackR -->
-      <article class="node-block" data-posture="defend">
+      <article class="node-block" id="surface-tracker" data-posture="defend">
         <div class="head">
           <div class="index"><span class="glyph"></span> iii · behavioral-environmental</div>
           <h3 class="name"><a href="https://cookiebouncer.app" rel="noopener">TrackRSmackR <span class="arrow">↗</span></a></h3>
@@ -470,7 +473,7 @@ footer .commitments b { color: var(--architecture); font-weight: 500; }
       </article>
 
       <!-- iv SCRIM -->
-      <article class="node-block" data-posture="defend">
+      <article class="node-block" id="surface-scrim" data-posture="defend">
         <div class="head">
           <div class="index"><span class="glyph"></span> iv · adversarial cognition</div>
           <h3 class="name">SCRIM <span style="color:var(--ink-faint);font-size:0.6em;font-family:var(--mono);letter-spacing:0.06em;">Compression-Class Deception Mesh</span></h3>
@@ -491,14 +494,14 @@ footer .commitments b { color: var(--architecture); font-weight: 500; }
       </article>
 
       <!-- v Polyhedral Minds -->
-      <article class="node-block" data-posture="construct">
+      <article class="node-block" id="surface-polygonal" data-posture="construct">
         <div class="head">
           <div class="index"><span class="glyph"></span> v · social-cognitive identity</div>
           <h3 class="name"><a href="https://sorted.quest" rel="noopener">Polyhedral Minds <span class="arrow">↗</span></a></h3>
           <div class="meta">live · sorted.quest · architecture paper forthcoming</div>
         </div>
         <div class="body">
-          <p>Each profile is a <strong>polygon</strong> — a multi-axis cognitive shape derived from behavioral signal, system-assigned, immutable within a controlled drift envelope. Color is deterministic from the vector, not chosen. Placement is automated: every group has a declared <em>void</em> it fills, not a credential it gates. Form siblings appear immediately on entry; cognitive opposites and mission pairs follow as identity stabilizes. Mass-audience platforms reward profiles toward population mean and penalize cognitive shape; here the compressed shape becomes the structural reason for placement and recognition.</p>
+          <p>Each profile is a <strong>polyhedron</strong> — a multi-axis cognitive shape derived from behavioral signal, system-assigned, immutable within a controlled drift envelope. Color is deterministic from the vector, not chosen. Placement is automated: every group has a declared <em>void</em> it fills, not a credential it gates. Form siblings appear immediately on entry; cognitive opposites and mission pairs follow as identity stabilizes. Mass-audience platforms reward profiles toward population mean and penalize cognitive shape; here the compressed shape becomes the structural reason for placement and recognition.</p>
         </div>
         <div class="mini-triad" aria-hidden="true">
           <svg viewBox="0 0 100 100" class="mini-topo" data-highlight="polygonal">
@@ -506,13 +509,13 @@ footer .commitments b { color: var(--architecture); font-weight: 500; }
             <line class="m-edge" data-edge="errorfect-acepaste" x1="50" y1="18" x2="77.71" y2="34"/><line class="m-edge" data-edge="acepaste-tracker" x1="77.71" y1="34" x2="77.71" y2="66"/><line class="m-edge" data-edge="tracker-scrim" x1="77.71" y1="66" x2="50" y2="82"/><line class="m-edge" data-edge="scrim-polygonal" x1="50" y1="82" x2="22.29" y2="66"/><line class="m-edge" data-edge="polygonal-rfsis" x1="22.29" y1="66" x2="22.29" y2="34"/><line class="m-edge" data-edge="rfsis-errorfect" x1="22.29" y1="34" x2="50" y2="18"/><line class="m-edge" data-edge="errorfect-scrim" x1="50" y1="18" x2="50" y2="82"/><line class="m-edge" data-edge="acepaste-polygonal" x1="77.71" y1="34" x2="22.29" y2="66"/><line class="m-edge" data-edge="tracker-rfsis" x1="77.71" y1="66" x2="22.29" y2="34"/>
             <circle class="m-node m-node-institutional" data-node="institutional" cx="50" cy="50" r="2.8"/><circle class="m-node m-node-errorfect" data-node="errorfect" cx="50" cy="18" r="2.6"/><circle class="m-node m-node-acepaste" data-node="acepaste" cx="77.71" cy="34" r="2.6"/><circle class="m-node m-node-tracker" data-node="tracker" cx="77.71" cy="66" r="2.6"/><circle class="m-node m-node-scrim" data-node="scrim" cx="50" cy="82" r="2.6"/><circle class="m-node m-node-polygonal" data-node="polygonal" cx="22.29" cy="66" r="2.6"/><circle class="m-node m-node-rfsis" data-node="rfsis" cx="22.29" cy="34" r="2.6"/>
           </svg>
-          <div class="triad-text"><span class="t-up">audience flattening toward population mean</span><span class="arr">→</span><span class="t-arch" style="color:var(--construct)">structural placement by polygon</span><span class="arr">→</span><span class="t-down">cognitive identity legibility</span></div>
+          <div class="triad-text"><span class="t-up">audience flattening toward population mean</span><span class="arr">→</span><span class="t-arch" style="color:var(--construct)">structural placement by polyhedron</span><span class="arr">→</span><span class="t-down">cognitive identity legibility</span></div>
         </div>
         <div class="connections">connects: <span class="c">rf-sis</span> <span class="c">acepaste</span> <span class="c">scrim</span></div>
       </article>
 
       <!-- vi RF-SIS -->
-      <article class="node-block" data-posture="construct">
+      <article class="node-block" id="surface-rfsis" data-posture="construct">
         <div class="head">
           <div class="index"><span class="glyph"></span> vi · physical-spatial perception</div>
           <h3 class="name">RF-SIS <span style="color:var(--ink-faint);font-size:0.6em;font-family:var(--mono);letter-spacing:0.06em;">RF-Derived Spatial Intelligence System</span></h3>
@@ -533,7 +536,7 @@ footer .commitments b { color: var(--architecture); font-weight: 500; }
       </article>
 
       <!-- vii Institutional Vehicle -->
-      <article class="node-block" style="border-top: 1px solid var(--rule); margin-top: 22px; padding-top: 30px;">
+      <article class="node-block" id="surface-institutional" style="border-top: 1px solid var(--rule); margin-top: 22px; padding-top: 30px;">
         <div class="head">
           <div class="index"><span class="glyph" style="background:var(--core);box-shadow:0 0 8px color-mix(in oklab, var(--core) 50%, transparent)"></span> vii · institutional vehicle</div>
           <h3 class="name">ThinkWell Labs <span style="color:var(--ink-faint);font-size:0.6em;font-family:var(--mono);letter-spacing:0.06em;">meta-architecture node · hybrid posture</span></h3>
@@ -704,11 +707,22 @@ footer .commitments b { color: var(--architecture); font-weight: 500; }
     if (!hit) return;
     hit.addEventListener('mouseenter', function () { var id = node.getAttribute('data-node'); var lbl = node.querySelector('.node-label'); readout.textContent = lbl ? lbl.textContent : id; activateNode(id); });
     hit.addEventListener('mouseleave', clearFocus);
-    hit.addEventListener('click', function () {
-      var map = { errorfect: 'https://errorfect.com', acepaste: 'https://acepaste.xyz', tracker: 'https://cookiebouncer.app', polygonal: 'https://sorted.quest' };
-      var url = map[node.getAttribute('data-node')];
-      if (url) window.open(url, '_blank', 'noopener');
-    });
+    /* Every node jumps to its own section below; product sites stay linked from each section's title. */
+    var target = document.getElementById('surface-' + node.getAttribute('data-node'));
+    if (!target) return;
+    var lblEl = node.querySelector('.node-label');
+    hit.setAttribute('tabindex', '0');
+    hit.setAttribute('role', 'link');
+    hit.setAttribute('aria-label', 'Jump to ' + (lblEl ? lblEl.textContent : node.getAttribute('data-node')));
+    var go = function () {
+      var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+      if (history.replaceState) history.replaceState(null, '', '#' + target.id);
+      target.classList.add('is-target');
+      setTimeout(function () { target.classList.remove('is-target'); }, 1800);
+    };
+    hit.addEventListener('click', go);
+    hit.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
   });
 
   /* acepaste demo */
