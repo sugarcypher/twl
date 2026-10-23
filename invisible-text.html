@@ -417,7 +417,7 @@ footer .foot-links a:hover { color: var(--ink); }
 
 <p>A paste-integrity layer needs to: enumerate every non-printing Unicode character present in the clipboard contents; decode tag-character sequences and surface their content as readable text; strip, normalize, or selectively preserve zero-width separators based on user policy; alert before text crosses into a model's context window; and provide ingestion-time inspection for RAG pipelines, before embedding, not after.</p>
 
-<p><strong>AcePaste</strong> is the implementation of this layer. It sits between clipboard and model interface, renders the invisible explicitly, and gives the user three options: strip the invisible content, inspect and decide, or pass it through with full awareness. For ingestion pipelines, the same inspection runs at scale, before any text enters the vector store.</p>
+<p><strong>AcePaste Cleaner Pro</strong> is the implementation of this layer. It sits between clipboard and model interface, renders the invisible explicitly, and gives the user three options: strip the invisible content, inspect and decide, or pass it through with full awareness. For ingestion pipelines, the same inspection runs at scale, before any text enters the vector store.</p>
 
 <p>The objective is not to prevent every conceivable misuse. It is to make pasted content auditable at the same level the model sees it. That parity — between what the user reviews and what the model receives — is the missing primitive in current LLM workflows.</p>
 
@@ -469,7 +469,7 @@ footer .foot-links a:hover { color: var(--ink); }
       <h4>Products</h4>
       <ul>
         <li><a href="./#work">All products</a></li>
-        <li><a href="https://acepaste.xyz" rel="noopener">AcePaste</a></li>
+        <li><a href="https://acepaste.xyz" rel="noopener">AcePaste Cleaner Pro</a></li>
         <li><a href="https://cookiebouncer.app" rel="noopener">TrackRSmackR</a></li>
       </ul>
     </div>
