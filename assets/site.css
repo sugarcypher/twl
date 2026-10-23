@@ -171,8 +171,18 @@ blockquote { margin: 6px 0; padding-left: 20px; border-left: 4px solid var(--yel
 @media (max-width: 460px) { .facts div { grid-template-columns: 1fr; gap: 2px; } }
 
 /* ── Principles ── */
-.principles { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 860px) { .principles { grid-template-columns: 1fr; } }
+.sec-note { margin-top: 18px; max-width: 46rem; color: var(--ink-2); font-size: 16px; }
+.principles-foot { margin-top: 28px; font-size: 14.5px; color: var(--ink-3); }
+.outcomes { list-style: none; margin: 0 0 clamp(36px, 5vw, 56px); padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 2px solid var(--ink); }
+.outcomes li { padding: 22px 4px; border-bottom: 1px solid var(--rule); font-size: clamp(22px, 2.6vw, 34px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; }
+.outcomes li:nth-child(odd) { padding-right: 28px; }
+.outcomes li span { color: var(--ink-3); font-weight: 500; }
+@media (max-width: 760px) { .outcomes { grid-template-columns: 1fr; } }
+.principles { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1100px) { .principles { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .principles { grid-template-columns: 1fr; } }
+.principle a { color: var(--ink); }
+.status { display: inline-block; margin-right: 8px; padding: 2px 6px; border: 1px solid var(--ink); color: var(--ink); font-size: 10.5px; letter-spacing: 0.12em; }
 .principle { padding: 30px 28px 32px; border-top: 6px solid var(--tone); background: var(--paper-2); }
 .p-num { display: inline-block; font: 700 13px/1 var(--mono); background: var(--ink); color: #fff; padding: 6px 9px; margin-bottom: 20px; }
 .principle h3 { font-size: 26px; margin-bottom: 10px; letter-spacing: -0.03em; }
